@@ -57,6 +57,15 @@ nav ul li a:hover {
     padding: 0 20px;
 }
 
+.hero-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover;
+}
+
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 20px;
@@ -139,6 +148,14 @@ section h2::after {
 .hobby-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hobby-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    object-fit: cover;
 }
 
 .hobby-item h3 {
