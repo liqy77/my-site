@@ -3,61 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python基础课程 - 李巧沅的个人主页</title>
+    <title>Python基础课程 - 学习站点</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="index.html#home">首页</a></li>
-                <li><a href="index.html#about">关于我</a></li>
-                <li><a href="index.html#hobbies">兴趣爱好</a></li>
-                <li><a href="python-course.html">Python课程</a></li>
-                <li><a href="index.html#vision">个人愿景</a></li>
+                <li><a href="python-course.html">课程首页</a></li>
+                <li><a href="#overview">课程概述</a></li>
+                <li><a href="#syntax">基础语法</a></li>
+                <li><a href="#data-structures">数据结构</a></li>
+                <li><a href="#functions">函数与模块</a></li>
+                <li><a href="#oop">面向对象</a></li>
+                <li><a href="#file-io">文件操作</a></li>
+                <li><a href="#exceptions">异常处理</a></li>
             </ul>
         </nav>
     </header>
     
     <main>
-        <section id="python-course" class="python">
-            <h2>Python基础课程</h2>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Python基础课程</h1>
+                <p>从零开始学习Python编程，培养基础编程素养</p>
+                <p>为数据分析学习打下坚实基础</p>
+            </div>
+        </section>
+        
+        <section id="overview" class="python">
+            <h2>课程概述</h2>
             <div class="python-content">
                 <div class="course-overview">
-                    <p>欢迎来到Python基础课程学习页面！本课程旨在帮助初学者快速掌握Python编程的基础知识，为后续的数据分析学习打下坚实的基础。课程内容聚焦于基础编程素养的培养。</p>
+                    <p>欢迎来到Python基础课程学习站点！本课程旨在帮助初学者快速掌握Python编程的基础知识，为后续的数据分析学习打下坚实的基础。课程内容聚焦于基础编程素养的培养，包括Python基础语法、数据结构、函数与模块、面向对象编程、文件操作与异常处理等核心内容。</p>
+                    <p>通过本课程的学习，您将掌握Python编程的基本技能，能够编写简单的Python程序，理解编程的基本思想和方法，为进一步学习数据分析和其他编程技能做好准备。</p>
                 </div>
-                <div class="course-topics">
-                    <div class="topic-item">
-                        <h3>Python基础语法</h3>
-                        <p>学习Python的变量、数据类型、运算符、控制流（条件语句、循环）等基本语法。掌握Python的代码结构和编程规范。</p>
-                    </div>
-                    <div class="topic-item">
-                        <h3>数据结构</h3>
-                        <p>学习列表、元组、字典、集合等Python内置的数据结构及其操作方法。了解不同数据结构的特点和使用场景。</p>
-                    </div>
-                    <div class="topic-item">
-                        <h3>函数与模块</h3>
-                        <p>掌握函数的定义和调用，学习如何使用Python的标准库和第三方模块。理解模块化编程的思想和实践。</p>
-                    </div>
-                    <div class="topic-item">
-                        <h3>面向对象编程</h3>
-                        <p>学习Python的面向对象编程思想，掌握类、对象、继承、多态等核心概念。理解面向对象编程的优势和应用场景。</p>
-                    </div>
-                    <div class="topic-item">
-                        <h3>文件操作</h3>
-                        <p>掌握Python的文件读写操作，学习如何处理文本文件和CSV文件。了解文件操作的基本流程和最佳实践。</p>
-                    </div>
-                    <div class="topic-item">
-                        <h3>异常处理</h3>
-                        <p>学习如何捕获和处理Python程序中的异常，提高代码的健壮性。理解异常处理的重要性和实现方法。</p>
-                    </div>
+            </div>
+        </section>
+        
+        <section id="syntax" class="python">
+            <h2>Python基础语法</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <h3>基本概念</h3>
+                    <p>Python是一种解释型、面向对象、动态数据类型的高级程序设计语言。Python语法简洁清晰，易于学习和使用。</p>
+                    
+                    <h3>变量与数据类型</h3>
+                    <p>Python支持多种数据类型，包括整数、浮点数、字符串、布尔值等。变量不需要声明类型，可以直接赋值。</p>
+                    
+                    <h3>控制流</h3>
+                    <p>学习条件语句（if-elif-else）和循环语句（for、while）的使用方法，掌握Python的控制流程。</p>
+                    
+                    <h3>代码规范</h3>
+                    <p>了解Python的代码风格和规范，包括缩进、命名约定、注释等，写出清晰易读的代码。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="data-structures" class="python">
+            <h2>数据结构</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <h3>列表（List）</h3>
+                    <p>学习列表的创建、访问、修改、添加、删除等操作，掌握列表的常用方法。</p>
+                    
+                    <h3>元组（Tuple）</h3>
+                    <p>了解元组的特点和使用场景，掌握元组的基本操作。</p>
+                    
+                    <h3>字典（Dictionary）</h3>
+                    <p>学习字典的创建、访问、修改、添加、删除等操作，掌握字典的常用方法。</p>
+                    
+                    <h3>集合（Set）</h3>
+                    <p>了解集合的特点和使用场景，掌握集合的基本操作和常用方法。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="functions" class="python">
+            <h2>函数与模块</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <h3>函数定义与调用</h3>
+                    <p>学习如何定义和调用函数，掌握函数的参数传递和返回值。</p>
+                    
+                    <h3>函数参数</h3>
+                    <p>了解位置参数、默认参数、可变参数、关键字参数等不同类型的参数。</p>
+                    
+                    <h3>模块导入</h3>
+                    <p>学习如何导入和使用Python的标准库和第三方模块。</p>
+                    
+                    <h3>模块化编程</h3>
+                    <p>理解模块化编程的思想，学习如何将代码组织成模块和包。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="oop" class="python">
+            <h2>面向对象编程</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <h3>类与对象</h3>
+                    <p>学习如何定义类和创建对象，掌握类的属性和方法。</p>
+                    
+                    <h3>继承与多态</h3>
+                    <p>了解继承的概念和实现方法，掌握多态的应用。</p>
+                    
+                    <h3>封装与抽象</h3>
+                    <p>理解封装的思想，学习如何实现数据隐藏和访问控制。</p>
+                    
+                    <h3>特殊方法</h3>
+                    <p>了解Python中的特殊方法，如__init__、__str__等的使用。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="file-io" class="python">
+            <h2>文件操作</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <h3>文件打开与关闭</h3>
+                    <p>学习如何使用open()函数打开文件，以及如何正确关闭文件。</p>
+                    
+                    <h3>文件读写</h3>
+                    <p>掌握文件的读取和写入操作，包括文本文件和二进制文件。</p>
+                    
+                    <h3>CSV文件处理</h3>
+                    <p>学习如何使用csv模块处理CSV文件，进行数据的读写操作。</p>
+                    
+                    <h3>上下文管理器</h3>
+                    <p>了解with语句的使用，学习如何安全地处理文件操作。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="exceptions" class="python">
+            <h2>异常处理</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <h3>异常的概念</h3>
+                    <p>了解什么是异常，以及Python中常见的异常类型。</p>
+                    
+                    <h3>try-except语句</h3>
+                    <p>学习如何使用try-except语句捕获和处理异常。</p>
+                    
+                    <h3>else和finally子句</h3>
+                    <p>了解else和finally子句的使用，掌握异常处理的完整流程。</p>
+                    
+                    <h3>自定义异常</h3>
+                    <p>学习如何定义和使用自定义异常，提高代码的健壮性。</p>
                 </div>
             </div>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2026 李巧沅的个人主页</p>
+        <p>&copy; 2026 Python基础课程学习站点</p>
     </footer>
 </body>
 </html>

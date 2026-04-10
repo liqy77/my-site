@@ -203,6 +203,29 @@ section h2::after {
     line-height: 1.6;
 }
 
+/* 课程详情部分 */
+.topic-detail {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.topic-detail h3 {
+    font-size: 1.3rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #667eea;
+}
+
+.topic-detail h3:first-child {
+    margin-top: 0;
+}
+
+.topic-detail p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
 /* 个人愿景部分 */
 .vision {
     background-color: #f9f9f9;
