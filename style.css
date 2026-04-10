@@ -149,6 +149,60 @@ section h2::after {
     line-height: 1.6;
 }
 
+/* Python课程部分 */
+.python {
+    background-color: #fff;
+    margin: 50px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.python-content {
+    padding: 0 50px;
+}
+
+.course-overview {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.course-overview p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.course-topics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.topic-item {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.topic-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.topic-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #667eea;
+}
+
+.topic-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
 /* 个人愿景部分 */
 .vision {
     background-color: #f9f9f9;
@@ -238,12 +292,11 @@ footer p {
         font-size: 1.8rem;
     }
 
-    .about-content,
-    .vision-content {
+    .about-content, .vision-content, .python-content {
         padding: 20px;
     }
 
-    .hobby-item {
+    .hobby-item, .topic-item {
         padding: 20px;
     }
 }
