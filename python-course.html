@@ -13,12 +13,12 @@
                 <li><a href="index.html">个人主页</a></li>
                 <li><a href="python-course.html">课程首页</a></li>
                 <li><a href="#overview">课程概述</a></li>
-                <li><a href="#syntax">基础语法</a></li>
-                <li><a href="#data-structures">数据结构</a></li>
+                <li><a href="#syntax">核心语法</a></li>
+                <li><a href="#data-containers">数据容器</a></li>
                 <li><a href="#functions">函数与模块</a></li>
-                <li><a href="#oop">面向对象</a></li>
-                <li><a href="#file-io">文件操作</a></li>
-                <li><a href="#exceptions">异常处理</a></li>
+                <li><a href="#engineering">工程化与数据接口</a></li>
+                <li><a href="#oop">面向对象编程</a></li>
+                <li><a href="#units">课程单元</a></li>
             </ul>
         </nav>
     </header>
@@ -27,22 +27,163 @@
         <section id="hero" class="hero">
             <div class="hero-content">
                 <h1>Python基础课程</h1>
-                <p>AI时代的Python学习：从"死记语法"到"培养计算思维"</p>
-                <p>成为AI指挥官，而非代码搬运工</p>
+                <p>AI时代的Python学习：重逻辑与架构，轻死记与造轮子</p>
+                <p>1-2周快速建立与AI协作的Python基础</p>
             </div>
         </section>
 
-        <section id="intro" class="python">
+        <section id="overview" class="python">
             <h2>课程概述</h2>
             <div class="python-content">
                 <div class="topic-detail">
-                    <p>在AI编程助手日益强大的今天，学习Python的重心和策略必须发生根本性转变。本课程旨在帮助您<strong>夯实底层逻辑，做AI代码的"审查官"</strong>，同时<strong>构建工程化护城河，做可靠产品的"交付者"</strong>。</p>
-                    <p>AI降低了<strong>"写出能跑的代码"</strong>的门槛，但也大幅提高了<strong>"读懂代码、架构设计、问题排查与工程落地"</strong>的要求。您的学习目标应该是：能看懂AI生成的代码，能发现其中的Bug与安全漏洞，能将碎片化的AI代码组装成可靠的系统。</p>
-                    <p>本课程内容聚焦于基础编程素养的培养，包括Python基础语法、数据结构、函数与模块、面向对象编程、文件操作与异常处理等核心内容。</p>
+                    <p>在AI编程日趋成熟的今天，学习Python基础的核心策略应当是：<strong>"重逻辑与架构，轻死记与造轮子"</strong>。AI已经能完美代劳大量模板代码的编写，因此你的学习重点应从"如何写出这段代码"转向"如何理解、组织和验证这段代码"。</p>
+                    
+                    <p>为了不浪费时间，Python基础课程应精简传统冗长的语法灌输，聚焦于与AI协作、数据处理及模型调用高度相关的内容。</p>
+                    
+                    <h3>核心学习模块</h3>
+                    <ul>
+                        <li>1. 核心语法与控制流：构建与AI沟通的逻辑基石</li>
+                        <li>2. 数据容器与操作：数据处理与API交互的核心</li>
+                        <li>3. 函数与模块化思维：拆解任务的指挥能力</li>
+                        <li>4. 工程化与数据接口：连接现实世界的桥梁</li>
+                        <li>5. 面向对象编程（OOP）感知：阅读AI代码的透视镜</li>
+                    </ul>
+                    
+                    <h3>避坑指南</h3>
+                    <p><strong>不需要花大量时间学习的内容：</strong></p>
+                    <ul>
+                        <li>复杂的算法手写（如手写排序、树遍历），AI写这些比你快且准</li>
+                        <li>过度深入的底层内存管理或C扩展</li>
+                        <li>冷门的标准库模块，需要时查阅文档或问AI即可</li>
+                    </ul>
                 </div>
             </div>
         </section>
-        
+
+        <section id="syntax" class="python">
+            <h2>1. 核心语法与控制流：构建与AI沟通的逻辑基石</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>在AI时代，你不需要死记硬背语法，但必须具备清晰的逻辑描述能力，因为这就是你给AI写Prompt的底层逻辑。</p>
+                    
+                    <h3>变量与数据类型</h3>
+                    <p>重点掌握整数、浮点数、字符串和布尔值。理解动态类型语言的特点，知道何时该用int或float，这在后续处理数值型数据时至关重要。</p>
+                    
+                    <h3>控制流语句</h3>
+                    <p>熟练使用if-elif-else条件分支和for/while循环。AI虽然能生成循环代码，但你需要理解循环的边界条件（如break和continue的使用），以防止AI生成的代码陷入死循环或逻辑遗漏。</p>
+                    
+                    <h3>学习重点</h3>
+                    <ul>
+                        <li>理解基本数据类型的特性和适用场景</li>
+                        <li>掌握条件语句的逻辑结构</li>
+                        <li>理解循环的工作原理和边界条件</li>
+                        <li>培养清晰的逻辑描述能力，用于编写有效的Prompt</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-containers" class="python">
+            <h2>2. 数据容器与操作：数据处理与API交互的核心</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>数据是AI的燃料，而Python的内置数据结构是承载这些燃料的容器。不需要浪费时间手写复杂数据结构算法，但必须熟练调用。</p>
+                    
+                    <h3>列表与字典</h3>
+                    <p>这是最高频的数据结构。列表用于存储序列数据，字典用于键值对映射。特别强调字典，因为大模型API的请求和返回格式几乎全是JSON，而JSON在Python中对应的就是字典，你必须熟练提取字典中的嵌套数据。</p>
+                    
+                    <h3>元组与集合</h3>
+                    <p>了解元组的不可变特性（常用于函数返回多值）和集合的去重、交并差运算，这在数据清洗时极为高效。</p>
+                    
+                    <h3>列表推导式</h3>
+                    <p>这是一种极具Python风格的简洁写法，AI经常生成此类代码。你必须能看懂它，以快速阅读AI生成的逻辑片段。</p>
+                    
+                    <h3>学习重点</h3>
+                    <ul>
+                        <li>熟练操作列表的增删改查</li>
+                        <li>掌握字典的键值对操作，特别是嵌套字典的处理</li>
+                        <li>了解元组和集合的特性和使用场景</li>
+                        <li>能理解和使用列表推导式</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="functions" class="python">
+            <h2>3. 函数与模块化思维：拆解任务的指挥能力</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>AI擅长写局部函数，而你负责将大任务拆解为多个函数模块并拼装。</p>
+                    
+                    <h3>函数定义与参数传递</h3>
+                    <p>掌握def关键字，重点理解位置参数、默认参数和可变参数（*args和**kwargs）。后者在调用AI API时非常常见，能让你灵活地传递配置参数。</p>
+                    
+                    <h3>变量的作用域</h3>
+                    <p>理解局部变量和全局变量的区别，避免在复杂项目中因变量名冲突导致的Bug。</p>
+                    
+                    <h3>模块与包管理</h3>
+                    <p>掌握import语句，以及如何使用pip安装第三方库。这是你使用任何AI或数据科学库（如NumPy、Pandas）的敲门砖，务必熟练掌握。</p>
+                    
+                    <h3>学习重点</h3>
+                    <ul>
+                        <li>掌握函数的定义和调用</li>
+                        <li>理解不同类型的参数传递方式</li>
+                        <li>了解变量作用域的规则</li>
+                        <li>熟练使用模块导入和包管理</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="engineering" class="python">
+            <h2>4. 工程化与数据接口：连接现实世界的桥梁</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>为了让AI生成的代码真正跑起来，你需要处理外部数据的输入输出和异常情况。</p>
+                    
+                    <h3>文件操作与数据格式化</h3>
+                    <p>重点掌握如何使用with open()读写文件，尤其是CSV和JSON格式的处理。这是数据分析最常见的数据源，也是模型配置文件的通用格式。</p>
+                    
+                    <h3>异常处理</h3>
+                    <p>掌握try-except结构。在调用AI API或爬取数据时，网络超时、格式错误等异常频发，良好的异常捕获机制能让你的程序在AI出现幻觉或服务宕机时保持健壮。</p>
+                    
+                    <h3>环境与依赖管理</h3>
+                    <p>学会使用venv创建虚拟环境。这是现代Python开发的基本素养，能避免不同项目间的库版本冲突，也是后续进行模型部署的前置条件。</p>
+                    
+                    <h3>学习重点</h3>
+                    <ul>
+                        <li>掌握文件的读写操作，特别是CSV和JSON格式</li>
+                        <li>学会使用异常处理机制增强程序健壮性</li>
+                        <li>理解虚拟环境的概念和使用方法</li>
+                        <li>掌握依赖管理的基本流程</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="oop" class="python">
+            <h2>5. 面向对象编程（OOP）感知：阅读AI代码的透视镜</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>不需要深入复杂的面向对象设计模式，但必须具备"OOP感知力"，因为主流的AI框架（如Scikit-learn、PyTorch、TensorFlow）和API客户端都是基于面向对象设计的。</p>
+                    
+                    <h3>类与对象</h3>
+                    <p>理解class的定义，以及__init__构造方法的作用。你要知道如何实例化一个对象，并调用其方法（例如model = KNeighborsClassifier()，model.fit()），这是你使用机器学习库的标准范式。</p>
+                    
+                    <h3>继承</h3>
+                    <p>了解子类可以继承父类的属性和方法，这有助于你理解框架中各种模型类的层级关系和复用逻辑。</p>
+                    
+                    <h3>学习重点</h3>
+                    <ul>
+                        <li>理解类和对象的基本概念</li>
+                        <li>掌握类的定义和实例化</li>
+                        <li>了解继承的基本原理</li>
+                        <li>能阅读和理解基于OOP的代码</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section id="units" class="python">
             <h2>课程单元</h2>
             <div class="python-content">
@@ -55,174 +196,39 @@
                         </a>
                     </div>
                     <div class="topic-item">
-                        <h3>第二单元：数据结构</h3>
-                        <p>学习列表、元组、字典、集合等Python核心数据结构（待开发）</p>
+                        <h3>第二单元：数据容器与操作</h3>
+                        <p>学习列表、字典、元组、集合等数据结构及其操作（待开发）</p>
                     </div>
                     <div class="topic-item">
-                        <h3>第三单元：函数与模块</h3>
+                        <h3>第三单元：函数与模块化</h3>
                         <p>学习函数定义、参数传递、模块导入等知识（待开发）</p>
                     </div>
                     <div class="topic-item">
-                        <h3>第四单元：面向对象编程</h3>
-                        <p>学习类、对象、继承、多态等OOP概念（待开发）</p>
+                        <h3>第四单元：工程化与数据接口</h3>
+                        <p>学习文件操作、异常处理、环境管理等知识（待开发）</p>
                     </div>
                     <div class="topic-item">
-                        <h3>第五单元：文件操作</h3>
-                        <p>学习文件读写、CSV处理等知识（待开发）</p>
-                    </div>
-                    <div class="topic-item">
-                        <h3>第六单元：异常处理</h3>
-                        <p>学习异常捕获、处理和自定义异常（待开发）</p>
+                        <h3>第五单元：面向对象编程感知</h3>
+                        <p>学习类、对象、继承等基本OOP概念（待开发）</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="syntax" class="python">
-            <h2>Python基础语法</h2>
+        <section id="conclusion" class="python">
+            <h2>学习路径建议</h2>
             <div class="python-content">
                 <div class="topic-detail">
-                    <h3>为什么AI时代仍需掌握语法</h3>
-                    <p>即使AI能帮你快速生成基础代码，你仍需具备判断和修正的能力。AI可能会给出功能正确但性能低下的代码，只有当你真正理解了基础语法，才能判断AI的代码是否最优。</p>
-
-                    <h3>基本概念</h3>
-                    <p>Python是一种解释型、面向对象、动态数据类型的高级程序设计语言。Python语法简洁清晰，易于学习和使用。理解这些基本特点有助于你更好地理解AI生成的代码。</p>
-
-                    <h3>变量与数据类型</h3>
-                    <p>Python支持多种数据类型，包括整数、浮点数、字符串、布尔值等。变量不需要声明类型，可以直接赋值。重点在于<strong>理解不同数据类型的特性和适用场景</strong>，这样你才能指导AI选择合适的数据类型。</p>
-
-                    <h3>控制流</h3>
-                    <p>学习条件语句（if-elif-else）和循环语句（for、while）的使用方法，掌握Python的控制流程。这是需求拆解和逻辑抽象的基础，也是你向AI下达精准Prompt的前提。</p>
-
-                    <h3>代码规范</h3>
-                    <p>了解Python的代码风格和规范，包括缩进、命名约定、注释等，写出清晰易读的代码。AI写的是"够用的代码"，而你要写的是"可维护的代码"。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="data-structures" class="python">
-            <h2>数据结构</h2>
-            <div class="python-content">
-                <div class="topic-detail">
-                    <h3>AI时代数据结构的重要性</h3>
-                    <p>数据结构是Python的精华！理解不同数据结构的时间复杂度，才能判断AI生成的代码是否最优。AI可能会给出功能正确但性能低下的实现，而你需要知道如何优化。</p>
-
-                    <h3>列表（List）</h3>
-                    <p>学习列表的创建、访问、修改、添加、删除等操作，掌握列表的常用方法。理解列表的时间复杂度，知道什么时候用列表最合适。</p>
-
-                    <h3>元组（Tuple）</h3>
-                    <p>了解元组的特点和使用场景，掌握元组的基本操作。理解元组的不可变特性及其优势。</p>
-
-                    <h3>字典（Dictionary）</h3>
-                    <p>学习字典的创建、访问、修改、添加、删除等操作，掌握字典的常用方法。字典是Python中最强大的数据结构之一，理解其哈希表原理对于优化代码至关重要。</p>
-
-                    <h3>集合（Set）</h3>
-                    <p>了解集合的特点和使用场景，掌握集合的基本操作和常用方法。集合在去重和成员测试方面有独特优势。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="functions" class="python">
-            <h2>函数与模块</h2>
-            <div class="python-content">
-                <div class="topic-detail">
-                    <h3>模块化思维：向AI下达精准Prompt的基础</h3>
-                    <p>如果你能把大问题拆解为多个定义清晰的函数模块，AI生成的代码质量会指数级上升。函数与模块化思维是需求拆解和逻辑抽象能力的核心体现。</p>
-
-                    <h3>函数定义与调用</h3>
-                    <p>学习如何定义和调用函数，掌握函数的参数传递和返回值。重点在于理解如何设计清晰的函数接口，这也是你与AI协同的关键。</p>
-
-                    <h3>函数参数</h3>
-                    <p>了解位置参数、默认参数、可变参数、关键字参数等不同类型的参数。掌握这些能让你更好地理解和使用AI生成的函数。</p>
-
-                    <h3>模块导入</h3>
-                    <p>学习如何导入和使用Python的标准库和第三方模块。AI的知识存在滞后性，当需要最准确的API用法时，你需要懂得查阅官方文档。</p>
-
-                    <h3>模块化编程</h3>
-                    <p>理解模块化编程的思想，学习如何将代码组织成模块和包。这是将碎片化的AI代码组装成可靠系统的基础能力。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="oop" class="python">
-            <h2>面向对象编程</h2>
-            <div class="python-content">
-                <div class="topic-detail">
-                    <h3>OOP：初学者的关键分水岭</h3>
-                    <p>AI生成的代码往往是过程式的，大型项目则需要你用OOP思想去重构和架构。面向对象编程是系统架构能力的核心体现，也是你区别于AI的重要能力。</p>
-
-                    <h3>类与对象</h3>
-                    <p>学习如何定义类和创建对象，掌握类的属性和方法。理解封装的思想，学习如何实现数据隐藏和访问控制。</p>
-
-                    <h3>继承与多态</h3>
-                    <p>了解继承的概念和实现方法，掌握多态的应用。这些是构建可扩展系统的关键概念。</p>
-
-                    <h3>封装与抽象</h3>
-                    <p>理解封装的思想，学习如何实现数据隐藏和访问控制。抽象能力是需求拆解和逻辑抽象的重要组成部分。</p>
-
-                    <h3>特殊方法</h3>
-                    <p>了解Python中的特殊方法，如__init__、__str__等的使用。这些是写出地道Python代码的关键。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="file-io" class="python">
-            <h2>文件操作</h2>
-            <div class="python-content">
-                <div class="topic-detail">
-                    <h3>文件操作：AI经常忽略细节</h3>
-                    <p>AI能写文件操作的代码，但经常忽略边界情况和资源管理。你需要掌握正确的文件操作方法，确保程序的健壮性。</p>
-
-                    <h3>文件打开与关闭</h3>
-                    <p>学习如何使用open()函数打开文件，以及如何正确关闭文件。资源管理是工程化能力的重要组成部分。</p>
-
-                    <h3>文件读写</h3>
-                    <p>掌握文件的读取和写入操作，包括文本文件和二进制文件。理解不同的读取模式和编码问题。</p>
-
-                    <h3>CSV文件处理</h3>
-                    <p>学习如何使用csv模块处理CSV文件，进行数据的读写操作。这是数据分析的基础技能。</p>
-
-                    <h3>上下文管理器</h3>
-                    <p>了解with语句的使用，学习如何安全地处理文件操作。上下文管理器是Python中处理资源的优雅方式，AI可能不会主动使用，但你应该掌握。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="exceptions" class="python">
-            <h2>异常处理</h2>
-            <div class="python-content">
-                <div class="topic-detail">
-                    <h3>异常处理：构建健壮性的关键</h3>
-                    <p>AI经常忽略边界情况和异常处理。掌握异常处理能让你的程序在面对脏数据和意外情况时不至于崩溃，这是工程化能力的核心护城河之一。</p>
-
-                    <h3>异常的概念</h3>
-                    <p>了解什么是异常，以及Python中常见的异常类型。理解异常的本质有助于你更好地预防和处理问题。</p>
-
-                    <h3>try-except语句</h3>
-                    <p>学习如何使用try-except语句捕获和处理异常。掌握异常捕获的技巧，避免过度捕获或捕获不足。</p>
-
-                    <h3>else和finally子句</h3>
-                    <p>了解else和finally子句的使用，掌握异常处理的完整流程。finally子句对于资源清理至关重要。</p>
-
-                    <h3>自定义异常</h3>
-                    <p>学习如何定义和使用自定义异常，提高代码的健壮性。自定义异常能让你的代码更清晰、更易维护。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="ai-era" class="python">
-            <h2>AI时代的进阶方向</h2>
-            <div class="python-content">
-                <div class="topic-detail">
-                    <p>在掌握了以上基础后，建议进一步学习以下工程化能力和高价值方向：</p>
+                    <p>通过以上5个模块的精简学习，你可以在1-2周内快速建立起与AI协作的Python基础，随后便能无缝衔接到以下方向：</p>
+                    
                     <ul>
-                        <li><strong>类型注解与静态检查</strong>：学习使用typing模块和mypy等静态检查工具</li>
-                        <li><strong>测试驱动开发（TDD）</strong>：AI写代码，你来写测试</li>
-                        <li><strong>环境与依赖管理</strong>：掌握venv/conda隔离环境</li>
-                        <li><strong>数据分析与科学计算</strong>：NumPy、Pandas、Matplotlib</li>
-                        <li><strong>Web后端与API服务</strong>：FastAPI或Django/Flask</li>
+                        <li><strong>数据分析方向：</strong>学习NumPy、Pandas进行数据处理和分析</li>
+                        <li><strong>AI应用开发：</strong>直接调用大模型API进行应用开发</li>
+                        <li><strong>机器学习：</strong>学习Scikit-learn、PyTorch等框架</li>
+                        <li><strong>Web开发：</strong>学习Flask、FastAPI等框架</li>
                     </ul>
-                    <p>记住：AI越强大，懂Python的人越能如虎添翼。不要把AI视为威胁，而要把它当作你的"初级程序员"。你需要做的，是提升自己的系统架构能力、工程规范意识和领域知识深度！</p>
+                    
+                    <p>记住，在AI时代，你的价值不在于写出多少代码，而在于如何组织、验证和优化代码，如何与AI高效协作，以及如何将技术与业务需求相结合。</p>
                 </div>
             </div>
         </section>
