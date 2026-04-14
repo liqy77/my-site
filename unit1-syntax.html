@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一单元：Python基础语法 - Python基础课程</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">个人主页</a></li>
+                <li><a href="python-course.html">课程首页</a></li>
+                <li><a href="#intro">单元介绍</a></li>
+                <li><a href="#print">print函数</a></li>
+                <li><a href="#variables">变量</a></li>
+                <li><a href="#datatypes">数据类型</a></li>
+                <li><a href="#operators">运算符</a></li>
+                <li><a href="#input">input函数</a></li>
+                <li><a href="#exercises">练习题</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>第一单元：Python基础语法</h1>
+                <p>从零开始，轻松入门Python编程</p>
+                <p>预计学习时间：2-3小时</p>
+            </div>
+        </section>
+
+        <section id="intro" class="python">
+            <h2>单元介绍</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>欢迎来到Python基础课程的第一单元！在这个单元中，你将学习Python编程最基础、最重要的概念。即使你之前完全没有接触过编程，也不用担心——我们会一步步引导你。</p>
+                    
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解什么是编程和Python</li>
+                        <li>学会使用print函数输出内容</li>
+                        <li>理解变量的概念和使用方法</li>
+                        <li>掌握Python的基本数据类型</li>
+                        <li>学会使用基本运算符进行计算</li>
+                        <li>能够使用input函数获取用户输入</li>
+                    </ul>
+                    
+                    <h3>学习提示</h3>
+                    <p>💡 <strong>重要提示：</strong>学习编程最好的方法就是动手实践！在阅读教程的同时，建议你打开Python编辑器，跟着示例代码一起敲一遍。遇到不懂的地方可以多试几次，编程就是在不断试错中进步的！</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="print" class="python">
+            <h2>1.1 你的第一行Python代码：print函数</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>让我们从最经典的"Hello, World!"程序开始！这是学习任何编程语言的传统第一步。</p>
+                    
+                    <h3>什么是print函数？</h3>
+                    <p>print函数就像是Python的"嘴巴"，它可以把你想让它说的话显示在屏幕上。</p>
+                    
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code># 这是一条注释，Python会忽略它
+print("Hello, World!")
+print("你好，世界！")
+print(123)
+print(3.14)</code></pre>
+                    </div>
+                    
+                    <h3>运行结果</h3>
+                    <div class="code-block result">
+                        <pre><code>Hello, World!
+你好，世界！
+123
+3.14</code></pre>
+                    </div>
+                    
+                    <h3>小提示</h3>
+                    <ul>
+                        <li><strong>引号：</strong>文字需要用引号（单引号或双引号都可以）括起来</li>
+                        <li><strong>数字：</strong>数字不需要引号</li>
+                        <li><strong>括号：</strong>print后面一定要有圆括号()</li>
+                        <li><strong>注释：</strong>以#开头的内容是注释，用来解释代码</li>
+                    </ul>
+                    
+                    <h3>试一试</h3>
+                    <p>现在轮到你了！试着用print函数输出你的名字：</p>
+                    <div class="code-block">
+                        <pre><code>print("我的名字是：李巧沅")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="variables" class="python">
+            <h2>1.2 变量：给数据起个名字</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>想象一下，你有一个盒子，你可以把东西放进去，然后给这个盒子起个名字。下次你想用这个东西的时候，只要叫盒子的名字就可以了。这就是变量！</p>
+                    
+                    <h3>什么是变量？</h3>
+                    <p>变量就是存储数据的容器。你可以把数字、文字等各种数据存放在变量里。</p>
+                    
+                    <h3>如何创建变量</h3>
+                    <div class="code-block">
+                        <pre><code># 创建一个名为name的变量，存储文字
+name = "李巧沅"
+
+# 创建一个名为age的变量，存储数字
+age = 18
+
+# 创建一个名为pi的变量，存储小数
+pi = 3.14159
+
+# 使用变量
+print(name)
+print(age)
+print(pi)</code></pre>
+                    </div>
+                    
+                    <h3>运行结果</h3>
+                    <div class="code-block result">
+                        <pre><code>李巧沅
+18
+3.14159</code></pre>
+                    </div>
+                    
+                    <h3>变量命名规则</h3>
+                    <ul>
+                        <li>✅ <strong>可以用：</strong>字母、数字、下划线</li>
+                        <li>❌ <strong>不能用：</strong>数字开头、特殊符号、空格</li>
+                        <li>📝 <strong>建议：</strong>使用有意义的名字，比如name、age、score</li>
+                    </ul>
+                    
+                    <h3>变量命名示例</h3>
+                    <div class="code-block">
+                        <pre><code># 好的变量名
+my_name = "李巧沅"
+student_age = 18
+course_score = 95
+
+# 不好的变量名
+n = "李巧沅"      # 不知道是什么意思
+a1 = 18          # 不够清晰
+my name = 95     # 不能有空格</code></pre>
+                    </div>
+                    
+                    <h3>修改变量的值</h3>
+                    <p>变量的值是可以改变的，就像你可以把盒子里的东西拿出来，放进新的东西：</p>
+                    <div class="code-block">
+                        <pre><code>score = 80
+print(score)  # 输出 80
+
+score = 90    # 修改score的值
+print(score)  # 输出 90
+
+score = score + 5  # 在原来的基础上加5
+print(score)  # 输出 95</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="datatypes" class="python">
+            <h2>1.3 数据类型：不同种类的数据</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>就像生活中有不同种类的东西（水果、文具、衣服等），Python中也有不同类型的数据。让我们来认识一下最常用的几种！</p>
+                    
+                    <h3>四种基本数据类型</h3>
+                    
+                    <h4>1. 整数（int）</h4>
+                    <p>整数就是没有小数部分的数，可以是正数、负数或零。</p>
+                    <div class="code-block">
+                        <pre><code>age = 18
+temperature = -5
+count = 0
+
+print(type(age))  # 查看类型，输出 &lt;class 'int'&gt;</code></pre>
+                    </div>
+                    
+                    <h4>2. 浮点数（float）</h4>
+                    <p>浮点数就是有小数部分的数。</p>
+                    <div class="code-block">
+                        <pre><code>pi = 3.14159
+height = 1.65
+weight = 50.5
+
+print(type(pi))  # 输出 &lt;class 'float'&gt;</code></pre>
+                    </div>
+                    
+                    <h4>3. 字符串（str）</h4>
+                    <p>字符串就是文字，需要用引号括起来。</p>
+                    <div class="code-block">
+                        <pre><code>name = "李巧沅"
+greeting = '你好！'
+message = "Python真有趣！"
+
+print(type(name))  # 输出 &lt;class 'str'&gt;</code></pre>
+                    </div>
+                    
+                    <h4>4. 布尔值（bool）</h4>
+                    <p>布尔值只有两个：True（真）和False（假）。</p>
+                    <div class="code-block">
+                        <pre><code>is_student = True
+is_teacher = False
+is_adult = age &gt;= 18
+
+print(type(is_student))  # 输出 &lt;class 'bool'&gt;</code></pre>
+                    </div>
+                    
+                    <h3>类型转换</h3>
+                    <p>有时候我们需要把一种类型转换成另一种类型：</p>
+                    <div class="code-block">
+                        <pre><code># 字符串转数字
+age_str = "18"
+age = int(age_str)
+print(age + 1)  # 输出 19
+
+# 数字转字符串
+score = 95
+score_str = str(score)
+print("我的分数是：" + score_str)
+
+# 整数转浮点数
+num = 10
+num_float = float(num)
+print(num_float)  # 输出 10.0</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="operators" class="python">
+            <h2>1.4 运算符：让数据动起来</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>运算符就像是计算器上的按钮，可以让我们对数据进行各种运算。让我们来学习最常用的几种！</p>
+                    
+                    <h3>算术运算符</h3>
+                    <table class="operator-table">
+                        <tr>
+                            <th>运算符</th>
+                            <th>说明</th>
+                            <th>示例</th>
+                            <th>结果</th>
+                        </tr>
+                        <tr>
+                            <td>+</td>
+                            <td>加法</td>
+                            <td>5 + 3</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>减法</td>
+                            <td>10 - 4</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>*</td>
+                            <td>乘法</td>
+                            <td>3 * 4</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>/</td>
+                            <td>除法</td>
+                            <td>10 / 3</td>
+                            <td>3.333...</td>
+                        </tr>
+                        <tr>
+                            <td>//</td>
+                            <td>整除</td>
+                            <td>10 // 3</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>%</td>
+                            <td>取余数</td>
+                            <td>10 % 3</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>**</td>
+                            <td>幂运算</td>
+                            <td>2 ** 3</td>
+                            <td>8</td>
+                        </tr>
+                    </table>
+                    
+                    <h3>运算示例</h3>
+                    <div class="code-block">
+                        <pre><code>a = 10
+b = 3
+
+print(a + b)   # 加法
+print(a - b)   # 减法
+print(a * b)   # 乘法
+print(a / b)   # 除法
+print(a // b)  # 整除
+print(a % b)   # 取余数
+print(a ** b)  # 幂运算</code></pre>
+                    </div>
+                    
+                    <h3>字符串的加法和乘法</h3>
+                    <p>字符串也可以用+和*运算符：</p>
+                    <div class="code-block">
+                        <pre><code># 字符串加法（拼接）
+greeting = "你好" + "，" + "李巧沅"
+print(greeting)  # 输出：你好，李巧沅
+
+# 字符串乘法（重复）
+laugh = "哈" * 5
+print(laugh)  # 输出：哈哈哈哈哈</code></pre>
+                    </div>
+                    
+                    <h3>赋值运算符</h3>
+                    <div class="code-block">
+                        <pre><code>score = 80
+print(score)  # 80
+
+score += 10   # 等同于 score = score + 10
+print(score)  # 90
+
+score -= 5    # 等同于 score = score - 5
+print(score)  # 85
+
+score *= 2    # 等同于 score = score * 2
+print(score)  # 170</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="input" class="python">
+            <h2>1.5 input函数：与用户互动</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>print函数是Python"说话"，那我们怎么让Python"听"我们说话呢？这就是input函数的作用！</p>
+                    
+                    <h3>基本用法</h3>
+                    <div class="code-block">
+                        <pre><code># 简单的输入
+name = input("请输入你的名字：")
+print("你好，" + name + "！")
+
+# 输入数字（注意要转换类型）
+age = input("请输入你的年龄：")
+age = int(age)
+print("明年你就" + str(age + 1) + "岁了！")</code></pre>
+                    </div>
+                    
+                    <h3>运行示例</h3>
+                    <div class="code-block result">
+                        <pre><code>请输入你的名字：李巧沅
+你好，李巧沅！
+请输入你的年龄：18
+明年你就19岁了！</code></pre>
+                    </div>
+                    
+                    <h3>小技巧：同时获取多个输入</h3>
+                    <div class="code-block">
+                        <pre><code># 获取姓名和年龄
+name = input("请输入姓名：")
+age = int(input("请输入年龄："))
+hobby = input("请输入爱好：")
+
+print("姓名：" + name)
+print("年龄：" + str(age))
+print("爱好：" + hobby)</code></pre>
+                    </div>
+                    
+                    <h3>综合练习：简单的计算器</h3>
+                    <p>让我们用所学知识做一个简单的加法计算器：</p>
+                    <div class="code-block">
+                        <pre><code>print("=== 简单加法计算器 ===")
+
+# 获取用户输入的两个数字
+num1 = float(input("请输入第一个数字："))
+num2 = float(input("请输入第二个数字："))
+
+# 计算结果
+result = num1 + num2
+
+# 输出结果
+print("结果：" + str(num1) + " + " + str(num2) + " = " + str(result))</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exercises" class="python">
+            <h2>1.6 单元练习题</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>太棒了！你已经学完了第一单元的所有内容。现在让我们通过一些练习来巩固所学知识吧！</p>
+                    
+                    <h3>练习题1：自我介绍</h3>
+                    <p>编写一个程序，使用变量存储你的姓名、年龄、爱好，然后用print函数输出一段自我介绍。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>name = "李巧沅"
+age = 18
+hobby = "美食探索"
+
+print("大家好！")
+print("我叫" + name)
+print("今年" + str(age) + "岁")
+print("我喜欢" + hobby)</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题2：面积计算器</h3>
+                    <p>编写一个程序，计算长方形的面积。提示：长 * 宽 = 面积</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>length = 5
+width = 3
+area = length * width
+
+print("长方形的长：" + str(length))
+print("长方形的宽：" + str(width))
+print("面积：" + str(area))</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题3：BMI计算器</h3>
+                    <p>BMI（身体质量指数）= 体重(kg) / 身高(m)²。编写一个程序，输入身高和体重，计算BMI。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>weight = float(input("请输入体重(kg)："))
+height = float(input("请输入身高(m)："))
+
+bmi = weight / (height ** 2)
+
+print("你的BMI是：" + str(round(bmi, 2)))</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题4：购物清单</h3>
+                    <p>编写一个程序，模拟购物结账。输入商品名称、单价、数量，计算总价。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>print("=== 购物结账 ===")
+
+item_name = input("请输入商品名称：")
+price = float(input("请输入单价："))
+quantity = int(input("请输入数量："))
+
+total = price * quantity
+
+print(item_name + " 单价：" + str(price))
+print("数量：" + str(quantity))
+print("总价：" + str(total))</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>单元总结</h3>
+                    <p>🎉 <strong>恭喜你完成了第一单元的学习！</strong></p>
+                    <ul>
+                        <li>你学会了用print函数输出内容</li>
+                        <li>你理解了变量的概念和用法</li>
+                        <li>你认识了四种基本数据类型</li>
+                        <li>你掌握了基本运算符的使用</li>
+                        <li>你学会了用input函数与用户互动</li>
+                    </ul>
+                    <p>继续加油，下一个单元我们将学习更有趣的内容！</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Python基础课程学习站点</p>
+        <p><a href="python-course.html">返回课程首页</a></p>
+    </footer>
+</body>
+</html>

@@ -261,6 +261,106 @@ section h2::after {
     font-weight: 600;
 }
 
+/* 代码块样式 */
+.code-block {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 0;
+}
+
+.code-block code {
+    color: #f8f8f2;
+}
+
+.code-block.result {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.code-block.result code {
+    color: #333;
+}
+
+/* 运算符表格 */
+.operator-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.operator-table th,
+.operator-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.operator-table th {
+    background-color: #667eea;
+    color: white;
+    font-weight: 600;
+}
+
+.operator-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.operator-table tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* 练习题答案 */
+.exercise-answer {
+    margin: 15px 0;
+}
+
+.exercise-answer summary {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    color: #667eea;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.exercise-answer summary:hover {
+    background-color: #e0e0e0;
+}
+
+.exercise-answer[open] summary {
+    border-radius: 5px 5px 0 0;
+}
+
+.exercise-answer .code-block {
+    margin-top: 0;
+    border-radius: 0 8px 8px 8px;
+}
+
+/* 页脚链接 */
+footer a {
+    color: #ffd700;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
 /* 个人愿景部分 */
 .vision {
     background-color: #f9f9f9;
