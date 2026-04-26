@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>第六单元：AI应用开发 - Python基础课程</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/monokai.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/python/python.min.js"></script>
+
+        <style>
+            .code-editor {
+                position: relative;
+                margin: 20px 0;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            }
+            
+            .code-editor.floating {
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                width: 400px;
+                max-width: 90vw;
+                z-index: 1000;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            }
+            
+            .CodeMirror {
+                height: auto;
+                min-height: 100px;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .code-actions {
+                display: flex;
+                justify-content: flex-end;
+                padding: 10px;
+                background-color: #2d2d2d;
+                border-top: 1px solid #444;
+            }
+            
+            .run-button {
+                background-color: #667eea;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
+            }
+            
+            .run-button:hover {
+                background-color: #5a6fd8;
+            }
+            
+            .run-button:active {
+                background-color: #4d5fc5;
+            }
+            
+            .code-output {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-top: none;
+                border-radius: 0 0 8px 8px;
+                padding: 15px;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 0.9rem;
+                line-height: 1.5;
+                white-space: pre-wrap;
+                min-height: 50px;
+                max-height: 300px;
+                overflow-y: auto;
+                color: #333;
+            }
+            
+            .code-editor.collapsed .CodeMirror {
+                max-height: 100px;
+                overflow: hidden;
+            }
+            
+            .collapse-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                cursor: pointer;
+                z-index: 10;
+            }
+            
+            .collapse-button:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+            
+            .code-block {
+                position: relative;
+            }
+            
+            .code-block-wrapper {
+                position: relative;
+                margin: 20px 0;
+            }
+            
+            .code-block-run-button {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                background-color: #667eea;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 6px 14px;
+                font-size: 0.85rem;
+                cursor: pointer;
+                z-index: 20;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                transition: background-color 0.3s ease;
+                font-weight: 500;
+            }
+            
+            .code-block-run-button:hover {
+                background-color: #5a6fd8;
+            }
+            
+            .code-block-run-button:active {
+                background-color: #4d5fc5;
+            }
+            
+            .code-block-output {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 0 0 8px 8px;
+                padding: 15px;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 0.9rem;
+                line-height: 1.5;
+                white-space: pre-wrap;
+                min-height: 50px;
+                max-height: 300px;
+                overflow-y: auto;
+                color: #333;
+                margin-top: -20px;
+                display: none;
+            }
+        </style>
+    </head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">个人主页</a></li>
+                <li><a href="python-course.html">课程首页</a></li>
+                <li><a href="#intro">单元介绍</a></li>
+                <li><a href="#ml-intro">机器学习入门</a></li>
+                <li><a href="#data-preprocessing">数据预处理</a></li>
+                <li><a href="#model-training">模型训练</a></li>
+                <li><a href="#model-evaluation">模型评估</a></li>
+                <li><a href="#deep-learning">深度学习</a></li>
+                <li><a href="#nlp">自然语言处理</a></li>
+                <li><a href="#computer-vision">计算机视觉</a></li>
+                <li><a href="#exercises">练习题</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>第六单元：AI应用开发</h1>
+                <p>探索人工智能的基本概念和应用，使用Python构建AI模型</p>
+                <p>预计学习时间：6-8小时</p>
+            </div>
+        </section>
+
+        <section id="intro" class="python">
+            <h2>单元介绍</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>欢迎来到Python基础课程的第六单元！在这个单元中，你将学习人工智能和机器学习的基本概念，以及如何使用Python构建AI应用。</p>
+                    
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解人工智能和机器学习的基本概念</li>
+                        <li>掌握Python中常用的AI库</li>
+                        <li>学会数据预处理和特征工程</li>
+                        <li>掌握模型训练和评估的方法</li>
+                        <li>了解深度学习的基本原理</li>
+                        <li>学会构建简单的AI应用</li>
+                        <li>能够应用AI技术解决实际问题</li>
+                    </ul>
+                    
+                    <h3>学习提示</h3>
+                    <p>💡 <strong>重要提示：</strong>AI开发需要大量的数据和计算资源。在学习过程中，你可以使用公开数据集和简化的模型来实践。同时，理解基本原理比追求复杂模型更重要！</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ml-intro" class="python">
+            <h2>6.1 机器学习入门：基本概念</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>机器学习是人工智能的一个分支，它使计算机能够从数据中学习而不需要显式编程。</p>
+                    
+                    <h3>机器学习的类型</h3>
+                    <div class="code-block">
+                        <pre><code># 机器学习的主要类型
+
+# 1. 监督学习
+# 从标记数据中学习，预测结果
+# 例子：分类、回归
+
+# 2. 无监督学习
+# 从未标记数据中学习模式
+# 例子：聚类、降维
+
+# 3. 半监督学习
+# 结合标记和未标记数据
+
+# 4. 强化学习
+# 通过与环境交互学习最优策略
+
+# 5. 深度学习
+# 使用神经网络模型
+
+# 常见的机器学习库
+# scikit-learn: 传统机器学习算法
+# TensorFlow: 深度学习框架
+# PyTorch: 深度学习框架
+# Keras: 高级神经网络API
+# pandas: 数据处理
+# NumPy: 数值计算
+# matplotlib: 数据可视化</code></pre>
+                    </div>
+                    
+                    <h3>使用scikit-learn</h3>
+                    <p><code>scikit-learn</code>是Python中最流行的机器学习库：</p>
+                    <div class="code-block">
+                        <pre><code># 安装scikit-learn
+# pip install scikit-learn
+
+# 基本导入
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# 加载数据集
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# 数据集信息
+print("特征名称:", iris.feature_names)
+print("目标类别:", iris.target_names)
+print("数据集形状:", X.shape)
+
+# 分割数据集
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+print("训练集大小:", X_train.shape)
+print("测试集大小:", X_test.shape)
+
+# 创建模型
+model = LogisticRegression()
+
+# 训练模型
+model.fit(X_train, y_train)
+
+# 预测
+y_pred = model.predict(X_test)
+
+# 评估模型
+accuracy = accuracy_score(y_test, y_pred)
+print(f"模型准确率: {accuracy:.2f}")
+
+# 预测新数据
+new_data = [[5.1, 3.5, 1.4, 0.2]]  # 山鸢尾花的特征
+prediction = model.predict(new_data)
+print(f"预测结果: {iris.target_names[prediction[0]]}")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-preprocessing" class="python">
+            <h2>6.2 数据预处理：准备你的数据</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>数据预处理是机器学习的重要步骤，它可以提高模型的性能。</p>
+                    
+                    <h3>数据清洗</h3>
+                    <p>处理缺失值、异常值和重复数据：</p>
+                    <div class="code-block">
+                        <pre><code>import pandas as pd
+import numpy as np
+
+# 创建示例数据
+data = {
+    'age': [25, 30, np.nan, 40, 45, 50, 55, np.nan],
+    'salary': [50000, 60000, 70000, np.nan, 90000, 100000, 110000, 120000],
+    'department': ['IT', 'HR', 'IT', 'Finance', 'HR', 'IT', 'Finance', 'IT']
+}
+
+df = pd.DataFrame(data)
+print("原始数据:")
+print(df)
+
+# 处理缺失值
+# 1. 删除缺失值
+# df_clean = df.dropna()
+
+# 2. 填充缺失值
+df['age'] = df['age'].fillna(df['age'].mean())
+df['salary'] = df['salary'].fillna(df['salary'].median())
+
+print("\n处理后的数据:")
+print(df)
+
+# 处理重复数据
+df_duplicates = pd.concat([df, df.iloc[[0]]])  # 添加重复行
+print("\n有重复数据:")
+print(df_duplicates)
+
+df_no_duplicates = df_duplicates.drop_duplicates()
+print("\n无重复数据:")
+print(df_no_duplicates)
+
+# 处理异常值
+# 检测异常值（使用IQR方法）
+Q1 = df['salary'].quantile(0.25)
+Q3 = df['salary'].quantile(0.75)
+IQR = Q3 - Q1
+
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+print(f"\n异常值边界: [{lower_bound}, {upper_bound}]")
+
+# 过滤异常值
+df_no_outliers = df[(df['salary'] >= lower_bound) & (df['salary'] <= upper_bound)]
+print("\n无异常值数据:")
+print(df_no_outliers)</code></pre>
+                    </div>
+                    
+                    <h3>特征工程</h3>
+                    <p>转换和选择特征：</p>
+                    <div class="code-block">
+                        <pre><code>import pandas as pd
+from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
+
+# 创建示例数据
+data = {
+    'age': [25, 30, 35, 40, 45],
+    'salary': [50000, 60000, 70000, 80000, 90000],
+    'department': ['IT', 'HR', 'IT', 'Finance', 'HR'],
+    'gender': ['Male', 'Female', 'Male', 'Female', 'Male']
+}
+
+df = pd.DataFrame(data)
+print("原始数据:")
+print(df)
+
+# 1. 特征缩放（标准化）
+scaler = StandardScaler()
+df[['age', 'salary']] = scaler.fit_transform(df[['age', 'salary']])
+print("\n标准化后的数据:")
+print(df)
+
+# 2. 标签编码（用于有序分类变量）
+label_encoder = LabelEncoder()
+df['gender_encoded'] = label_encoder.fit_transform(df['gender'])
+print("\n标签编码后的数据:")
+print(df)
+
+# 3. 独热编码（用于无序分类变量）
+df_encoded = pd.get_dummies(df, columns=['department'])
+print("\n独热编码后的数据:")
+print(df_encoded)
+
+# 4. 特征选择
+# 相关性分析
+correlation = df.corr()
+print("\n相关性矩阵:")
+print(correlation)
+
+# 选择与目标变量相关性高的特征
+# 假设目标变量是salary
+target_correlation = correlation['salary'].abs().sort_values(ascending=False)
+print("\n与salary的相关性:")
+print(target_correlation)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="model-training" class="python">
+            <h2>6.3 模型训练：构建你的AI模型</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>模型训练是机器学习的核心步骤，它涉及选择合适的算法并拟合数据。</p>
+                    
+                    <h3>分类模型</h3>
+                    <p>使用不同的分类算法：</p>
+                    <div class="code-block">
+                        <pre><code>from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# 加载数据集
+cancer = load_breast_cancer()
+X, y = cancer.data, cancer.target
+
+# 分割数据集
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 定义模型
+t models = {
+    'Logistic Regression': LogisticRegression(max_iter=10000),
+    'Decision Tree': DecisionTreeClassifier(),
+    'Random Forest': RandomForestClassifier(),
+    'SVM': SVC(),
+    'KNN': KNeighborsClassifier()
+}
+
+# 训练和评估模型
+for name, model in models.items():
+    # 训练模型
+    model.fit(X_train, y_train)
+    # 预测
+    y_pred = model.predict(X_test)
+    # 计算准确率
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"{name} 准确率: {accuracy:.2f}")
+
+# 超参数调优
+from sklearn.model_selection import GridSearchCV
+
+# 定义参数网格
+param_grid = {
+    'n_estimators': [10, 50, 100],
+    'max_depth': [3, 5, 7, None]
+}
+
+# 创建网格搜索
+grid_search = GridSearchCV(
+    RandomForestClassifier(),
+    param_grid,
+    cv=5,
+    scoring='accuracy'
+)
+
+# 运行网格搜索
+grid_search.fit(X_train, y_train)
+
+print("\n最佳参数:")
+print(grid_search.best_params_)
+print(f"最佳交叉验证准确率: {grid_search.best_score_:.2f}")
+
+# 使用最佳模型
+best_model = grid_search.best_estimator_
+y_pred = best_model.predict(X_test)
+print(f"测试集准确率: {accuracy_score(y_test, y_pred):.2f}")</code></pre>
+                    </div>
+                    
+                    <h3>回归模型</h3>
+                    <p>使用不同的回归算法：</p>
+                    <div class="code-block">
+                        <pre><code>from sklearn.datasets import load_diabetes
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+import numpy as np
+
+# 加载数据集
+diabetes = load_diabetes()
+X, y = diabetes.data, diabetes.target
+
+# 分割数据集
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 定义模型
+models = {
+    'Linear Regression': LinearRegression(),
+    'Ridge Regression': Ridge(),
+    'Lasso Regression': Lasso(),
+    'Decision Tree': DecisionTreeRegressor(),
+    'Random Forest': RandomForestRegressor()
+}
+
+# 训练和评估模型
+for name, model in models.items():
+    # 训练模型
+    model.fit(X_train, y_train)
+    # 预测
+    y_pred = model.predict(X_test)
+    # 计算评估指标
+    mse = mean_squared_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    r2 = r2_score(y_test, y_pred)
+    print(f"{name}:")
+    print(f"  MSE: {mse:.2f}")
+    print(f"  RMSE: {rmse:.2f}")
+    print(f"  R²: {r2:.2f}")
+    print()
+
+# 特征重要性（以随机森林为例）
+rf_model = RandomForestRegressor()
+rf_model.fit(X_train, y_train)
+
+feature_importances = rf_model.feature_importances_
+feature_names = diabetes.feature_names
+
+print("特征重要性:")
+for feature, importance in zip(feature_names, feature_importances):
+    print(f"{feature}: {importance:.4f}")
+
+# 可视化特征重要性
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+plt.barh(feature_names, feature_importances)
+plt.xlabel('重要性')
+plt.ylabel('特征')
+plt.title('随机森林特征重要性')
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="model-evaluation" class="python">
+            <h2>6.4 模型评估：评估你的AI模型</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>模型评估是确保模型性能的重要步骤，它可以帮助你了解模型的优缺点。</p>
+                    
+                    <h3>分类模型评估</h3>
+                    <p>使用不同的评估指标：</p>
+                    <div class="code-block">
+                        <pre><code>from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, f1_score,
+    confusion_matrix, classification_report, roc_curve, auc
+)
+import matplotlib.pyplot as plt
+
+# 加载数据集
+cancer = load_breast_cancer()
+X, y = cancer.data, cancer.target
+
+# 分割数据集
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 训练模型
+model = LogisticRegression(max_iter=10000)
+model.fit(X_train, y_train)
+
+# 预测
+y_pred = model.predict(X_test)
+y_pred_proba = model.predict_proba(X_test)[:, 1]
+
+# 计算评估指标
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+print(f"准确率: {accuracy:.2f}")
+print(f"精确率: {precision:.2f}")
+print(f"召回率: {recall:.2f}")
+print(f"F1分数: {f1:.2f}")
+
+# 混淆矩阵
+print("\n混淆矩阵:")
+print(confusion_matrix(y_test, y_pred))
+
+# 分类报告
+print("\n分类报告:")
+print(classification_report(y_test, y_pred))
+
+# ROC曲线和AUC
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+roc_auc = auc(fpr, tpr)
+
+print(f"\nAUC: {roc_auc:.2f}")
+
+# 可视化ROC曲线
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, color='blue', lw=2, label=f'ROC curve (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='gray', linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('假阳性率')
+plt.ylabel('真阳性率')
+plt.title('接收器操作特征曲线 (ROC)')
+plt.legend(loc="lower right")
+plt.show()</code></pre>
+                    </div>
+                    
+                    <h3>交叉验证</h3>
+                    <p>使用交叉验证来评估模型的稳定性：</p>
+                    <div class="code-block">
+                        <pre><code>from sklearn.datasets import load_iris
+from sklearn.model_selection import cross_val_score, KFold
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+# 加载数据集
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# 定义模型
+models = {
+    'Logistic Regression': LogisticRegression(max_iter=1000),
+    'Decision Tree': DecisionTreeClassifier(),
+    'Random Forest': RandomForestClassifier()
+}
+
+# 使用5折交叉验证
+cv = KFold(n_splits=5, shuffle=True, random_state=42)
+
+for name, model in models.items():
+    # 计算交叉验证分数
+    scores = cross_val_score(model, X, y, cv=cv, scoring='accuracy')
+    print(f"{name}:")
+    print(f"  交叉验证准确率: {scores.mean():.2f} ± {scores.std():.2f}")
+    print(f"  各折分数: {scores}")
+    print()
+
+# 留一交叉验证
+from sklearn.model_selection import LeaveOneOut
+
+loo = LeaveOneOut()
+scores = cross_val_score(LogisticRegression(max_iter=1000), X, y, cv=loo, scoring='accuracy')
+print(f"留一交叉验证准确率: {scores.mean():.2f}")
+print(f"测试次数: {len(scores)}")
+print(f"正确预测次数: {scores.sum()}")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deep-learning" class="python">
+            <h2>6.5 深度学习：神经网络基础</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>深度学习是机器学习的一个分支，它使用神经网络来学习复杂的模式。</p>
+                    
+                    <h3>使用Keras构建神经网络</h3>
+                    <p><code>Keras</code>是一个高级神经网络API，它可以运行在TensorFlow之上：</p>
+                    <div class="code-block">
+                        <pre><code># 安装必要的库
+# pip install tensorflow keras
+
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.utils import to_categorical
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# 加载数据集
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# 数据预处理
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+# 转换标签为独热编码
+y = to_categorical(y)
+
+# 分割数据集
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 创建模型
+model = Sequential([
+    Dense(16, activation='relu', input_shape=(4,)),
+    Dropout(0.2),
+    Dense(8, activation='relu'),
+    Dropout(0.2),
+    Dense(3, activation='softmax')
+])
+
+# 编译模型
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# 查看模型架构
+model.summary()
+
+# 训练模型
+history = model.fit(
+    X_train, y_train,
+    epochs=50,
+    batch_size=8,
+    validation_split=0.2,
+    verbose=1
+)
+
+# 评估模型
+loss, accuracy = model.evaluate(X_test, y_test, verbose=0)
+print(f"测试集准确率: {accuracy:.2f}")
+
+# 预测
+predictions = model.predict(X_test)
+predicted_classes = np.argmax(predictions, axis=1)
+true_classes = np.argmax(y_test, axis=1)
+
+print("\n预测结果:")
+print(f"预测类别: {predicted_classes}")
+print(f"真实类别: {true_classes}")
+
+# 保存模型
+model.save('iris_classifier.h5')
+
+# 加载模型
+from tensorflow.keras.models import load_model
+loaded_model = load_model('iris_classifier.h5')
+
+# 使用加载的模型进行预测
+loaded_predictions = loaded_model.predict(X_test)
+loaded_predicted_classes = np.argmax(loaded_predictions, axis=1)
+print(f"\n加载模型后的预测结果: {loaded_predicted_classes}")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nlp" class="python">
+            <h2>6.6 自然语言处理：处理文本数据</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>自然语言处理（NLP）是AI的一个重要分支，它涉及计算机与人类语言的交互。</p>
+                    
+                    <h3>文本预处理</h3>
+                    <p>处理和转换文本数据：</p>
+                    <div class="code-block">
+                        <pre><code>import nltk
+from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer, PorterStemmer
+import string
+
+# 下载必要的资源
+# nltk.download('punkt')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
+
+# 示例文本
+text = "Hello, world! This is an example of natural language processing. We are learning about text preprocessing."
+
+print("原始文本:")
+print(text)
+print()
+
+# 1. 转换为小写
+text_lower = text.lower()
+print("小写文本:")
+print(text_lower)
+print()
+
+# 2. 分词
+tokens = word_tokenize(text_lower)
+print("分词结果:")
+print(tokens)
+print()
+
+# 3. 移除标点符号
+ tokens = [token for token in tokens if token not in string.punctuation]
+print("移除标点符号后:")
+print(tokens)
+print()
+
+# 4. 移除停用词
+stop_words = set(stopwords.words('english'))
+tokens = [token for token in tokens if token not in stop_words]
+print("移除停用词后:")
+print(tokens)
+print()
+
+# 5. 词干提取
+stemmer = PorterStemmer()
+stemmed_tokens = [stemmer.stem(token) for token in tokens]
+print("词干提取后:")
+print(stemmed_tokens)
+print()
+
+# 6. 词形还原
+lemmatizer = WordNetLemmatizer()
+lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
+print("词形还原后:")
+print(lemmatized_tokens)
+print()
+
+# 7. 句子分割
+sentences = sent_tokenize(text)
+print("句子分割:")
+for i, sentence in enumerate(sentences, 1):
+    print(f"句子 {i}: {sentence}")</code></pre>
+                    </div>
+                    
+                    <h3>文本分类</h3>
+                    <p>使用机器学习进行文本分类：</p>
+                    <div class="code-block">
+                        <pre><code>from sklearn.datasets import fetch_20newsgroups
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score, classification_report
+
+# 加载数据集
+data = fetch_20newsgroups(subset='all', categories=['alt.atheism', 'soc.religion.christian', 'comp.graphics', 'sci.med'])
+
+print(f"数据集大小: {len(data.data)}")
+print(f"类别: {data.target_names}")
+
+# 分割数据集
+X_train, X_test, y_train, y_test = train_test_split(
+    data.data, data.target, test_size=0.2, random_state=42
+)
+
+# 特征提取
+vectorizer = TfidfVectorizer(stop_words='english', max_features=5000)
+X_train_vec = vectorizer.fit_transform(X_train)
+X_test_vec = vectorizer.transform(X_test)
+
+print(f"训练集特征形状: {X_train_vec.shape}")
+print(f"测试集特征形状: {X_test_vec.shape}")
+
+# 训练模型
+model = MultinomialNB()
+model.fit(X_train_vec, y_train)
+
+# 预测
+y_pred = model.predict(X_test_vec)
+
+# 评估模型
+accuracy = accuracy_score(y_test, y_pred)
+print(f"准确率: {accuracy:.2f}")
+
+print("\n分类报告:")
+print(classification_report(y_test, y_pred, target_names=data.target_names))
+
+# 测试新文本
+new_texts = [
+    "God is love and Jesus is the son of God",
+    "The GPU in my computer is not working properly",
+    "Atheism is a belief system that rejects the existence of deities",
+    "I have a headache and fever, what should I do?"
+]
+
+new_texts_vec = vectorizer.transform(new_texts)
+predictions = model.predict(new_texts_vec)
+
+print("\n新文本预测:")
+for text, pred in zip(new_texts, predictions):
+    print(f"文本: {text}")
+    print(f"预测类别: {data.target_names[pred]}")
+    print()</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="computer-vision" class="python">
+            <h2>6.7 计算机视觉：处理图像数据</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>计算机视觉是AI的一个分支，它涉及让计算机理解和解释图像。</p>
+                    
+                    <h3>图像预处理</h3>
+                    <p>处理和转换图像数据：</p>
+                    <div class="code-block">
+                        <pre><code>import cv2
+import numpy as np
+from PIL import Image
+import matplotlib.pyplot as plt
+
+# 注意：由于环境限制，这里提供代码示例，但可能无法在当前环境中运行
+
+# 加载图像
+# img = cv2.imread('image.jpg')
+# 转换为RGB
+# img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+# 图像尺寸
+# height, width, channels = img.shape
+# print(f"图像尺寸: {width}x{height}, 通道数: {channels}")
+
+# 调整图像大小
+# resized = cv2.resize(img, (200, 200))
+
+# 灰度转换
+# gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# 边缘检测
+# edges = cv2.Canny(gray, 100, 200)
+
+# 显示图像
+# plt.figure(figsize=(12, 4))
+# plt.subplot(131)
+# plt.imshow(img_rgb)
+# plt.title('原始图像')
+# plt.axis('off')
+# 
+# plt.subplot(132)
+# plt.imshow(gray, cmap='gray')
+# plt.title('灰度图像')
+# plt.axis('off')
+# 
+# plt.subplot(133)
+# plt.imshow(edges, cmap='gray')
+# plt.title('边缘检测')
+# plt.axis('off')
+# 
+# plt.tight_layout()
+# plt.show()
+
+# 图像数据标准化
+# img_array = np.array(img)
+# normalized = img_array / 255.0
+# print(f"标准化前范围: {img_array.min()} - {img_array.max()}")
+# print(f"标准化后范围: {normalized.min():.2f} - {normalized.max():.2f}")</code></pre>
+                    </div>
+                    
+                    <h3>图像分类</h3>
+                    <p>使用深度学习进行图像分类：</p>
+                    <div class="code-block">
+                        <pre><code># 安装必要的库
+# pip install tensorflow keras
+
+import numpy as np
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D
+from tensorflow.keras.utils import to_categorical
+import matplotlib.pyplot as plt
+
+# 加载MNIST数据集
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+
+print(f"训练集大小: {X_train.shape}")
+print(f"测试集大小: {X_test.shape}")
+
+# 显示示例图像
+plt.figure(figsize=(10, 10))
+for i in range(25):
+    plt.subplot(5, 5, i+1)
+    plt.imshow(X_train[i], cmap='gray')
+    plt.title(f"标签: {y_train[i]}")
+    plt.axis('off')
+plt.tight_layout()
+plt.show()
+
+# 数据预处理
+# 调整形状和归一化
+X_train = X_train.reshape(-1, 28, 28, 1).astype('float32') / 255
+X_test = X_test.reshape(-1, 28, 28, 1).astype('float32') / 255
+
+# 转换标签为独热编码
+y_train = to_categorical(y_train, 10)
+y_test = to_categorical(y_test, 10)
+
+# 创建CNN模型
+model = Sequential([
+    Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
+    MaxPooling2D((2, 2)),
+    Conv2D(64, (3, 3), activation='relu'),
+    MaxPooling2D((2, 2)),
+    Flatten(),
+    Dense(128, activation='relu'),
+    Dense(10, activation='softmax')
+])
+
+# 编译模型
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# 查看模型架构
+model.summary()
+
+# 训练模型
+history = model.fit(
+    X_train, y_train,
+    epochs=5,
+    batch_size=32,
+    validation_split=0.2,
+    verbose=1
+)
+
+# 评估模型
+loss, accuracy = model.evaluate(X_test, y_test, verbose=0)
+print(f"测试集准确率: {accuracy:.2f}")
+
+# 预测
+predictions = model.predict(X_test[:10])
+predicted_classes = np.argmax(predictions, axis=1)
+true_classes = np.argmax(y_test[:10], axis=1)
+
+print("\n预测结果:")
+print(f"预测类别: {predicted_classes}")
+print(f"真实类别: {true_classes}")
+
+# 显示预测结果
+plt.figure(figsize=(10, 5))
+for i in range(10):
+    plt.subplot(2, 5, i+1)
+    plt.imshow(X_test[i].reshape(28, 28), cmap='gray')
+    plt.title(f"预测: {predicted_classes[i]}, 真实: {true_classes[i]}")
+    plt.axis('off')
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exercises" class="python">
+            <h2>6.8 单元练习题</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>太棒了！你已经学完了第六单元的所有内容。现在让我们通过一些练习来巩固所学知识吧！</p>
+                    
+                    <h3>练习题1：机器学习基础</h3>
+                    <p>使用scikit-learn库，构建一个分类模型来预测鸢尾花的种类。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# 加载数据集
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# 分割数据集
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 创建并训练模型
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# 预测
+y_pred = model.predict(X_test)
+
+# 评估模型
+accuracy = accuracy_score(y_test, y_pred)
+print(f"准确率: {accuracy:.2f}")
+
+print("\n分类报告:")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+# 特征重要性
+feature_importances = model.feature_importances_
+print("\n特征重要性:")
+for feature, importance in zip(iris.feature_names, feature_importances):
+    print(f"{feature}: {importance:.4f}")</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题2：数据预处理</h3>
+                    <p>使用pandas库，对以下数据集进行预处理：处理缺失值、异常值，并进行特征缩放。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+
+# 创建示例数据
+data = {
+    'age': [25, 30, np.nan, 40, 45, 50, 55, np.nan],
+    'salary': [50000, 60000, 70000, np.nan, 90000, 100000, 110000, 120000],
+    'department': ['IT', 'HR', 'IT', 'Finance', 'HR', 'IT', 'Finance', 'IT'],
+    'score': [85, 90, 75, 80, 95, 100, 110, 85]  # 110是异常值
+}
+
+df = pd.DataFrame(data)
+print("原始数据:")
+print(df)
+
+# 1. 处理缺失值
+df['age'] = df['age'].fillna(df['age'].mean())
+df['salary'] = df['salary'].fillna(df['salary'].median())
+
+# 2. 处理异常值（score列）
+Q1 = df['score'].quantile(0.25)
+Q3 = df['score'].quantile(0.75)
+IQR = Q3 - Q1
+
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+print(f"\n异常值边界: [{lower_bound}, {upper_bound}]")
+
+# 替换异常值为中位数
+df['score'] = np.where(
+    (df['score'] < lower_bound) | (df['score'] > upper_bound),
+    df['score'].median(),
+    df['score']
+)
+
+# 3. 特征缩放
+scaler = StandardScaler()
+df[['age', 'salary', 'score']] = scaler.fit_transform(df[['age', 'salary', 'score']])
+
+# 4. 独热编码
+df = pd.get_dummies(df, columns=['department'])
+
+print("\n处理后的数据:")
+print(df)</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题3：深度学习</h3>
+                    <p>使用Keras库，构建一个简单的神经网络来预测手写数字。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>import numpy as np
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Flatten
+from tensorflow.keras.utils import to_categorical
+
+# 加载MNIST数据集
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+
+# 数据预处理
+X_train = X_train.reshape(-1, 28*28).astype('float32') / 255
+X_test = X_test.reshape(-1, 28*28).astype('float32') / 255
+
+# 转换标签为独热编码
+y_train = to_categorical(y_train, 10)
+y_test = to_categorical(y_test, 10)
+
+# 创建模型
+model = Sequential([
+    Dense(128, activation='relu', input_shape=(784,)),
+    Dense(64, activation='relu'),
+    Dense(10, activation='softmax')
+])
+
+# 编译模型
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# 训练模型
+history = model.fit(
+    X_train, y_train,
+    epochs=5,
+    batch_size=32,
+    validation_split=0.2,
+    verbose=1
+)
+
+# 评估模型
+loss, accuracy = model.evaluate(X_test, y_test, verbose=0)
+print(f"测试集准确率: {accuracy:.2f}")
+
+# 预测
+predictions = model.predict(X_test[:5])
+predicted_classes = np.argmax(predictions, axis=1)
+true_classes = np.argmax(y_test[:5], axis=1)
+
+print("\n预测结果:")
+print(f"预测类别: {predicted_classes}")
+print(f"真实类别: {true_classes}")</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题4：自然语言处理</h3>
+                    <p>使用scikit-learn库，构建一个文本分类模型来区分不同类别的新闻。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>from sklearn.datasets import fetch_20newsgroups
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report
+
+# 加载数据集
+data = fetch_20newsgroups(
+    subset='all', 
+    categories=['rec.sport.baseball', 'rec.sport.hockey', 'sci.space', 'sci.med']
+)
+
+print(f"数据集大小: {len(data.data)}")
+print(f"类别: {data.target_names}")
+
+# 分割数据集
+X_train, X_test, y_train, y_test = train_test_split(
+    data.data, data.target, test_size=0.2, random_state=42
+)
+
+# 特征提取
+vectorizer = TfidfVectorizer(stop_words='english', max_features=10000)
+X_train_vec = vectorizer.fit_transform(X_train)
+X_test_vec = vectorizer.transform(X_test)
+
+print(f"训练集特征形状: {X_train_vec.shape}")
+print(f"测试集特征形状: {X_test_vec.shape}")
+
+# 训练模型
+model = SVC(kernel='linear')
+model.fit(X_train_vec, y_train)
+
+# 预测
+y_pred = model.predict(X_test_vec)
+
+# 评估模型
+accuracy = accuracy_score(y_test, y_pred)
+print(f"准确率: {accuracy:.2f}")
+
+print("\n分类报告:")
+print(classification_report(y_test, y_pred, target_names=data.target_names))
+
+# 测试新文本
+new_texts = [
+    "The baseball game was exciting, the home team won in the ninth inning",
+    "The hockey match ended in a tie, both teams played well",
+    "NASA is planning a new mission to Mars next year",
+    "The doctor prescribed medicine for the patient's illness"
+]
+
+new_texts_vec = vectorizer.transform(new_texts)
+predictions = model.predict(new_texts_vec)
+
+print("\n新文本预测:")
+for text, pred in zip(new_texts, predictions):
+    print(f"文本: {text}")
+    print(f"预测类别: {data.target_names[pred]}")
+    print()</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>单元总结</h3>
+                    <p>🎉 <strong>恭喜你完成了第六单元的学习！</strong></p>
+                    <ul>
+                        <li>你了解了人工智能和机器学习的基本概念</li>
+                        <li>你掌握了Python中常用的AI库</li>
+                        <li>你学会了数据预处理和特征工程</li>
+                        <li>你掌握了模型训练和评估的方法</li>
+                        <li>你了解了深度学习的基本原理</li>
+                        <li>你学会了构建简单的AI应用</li>
+                        <li>你能够应用AI技术解决实际问题</li>
+                    </ul>
+                    <p>恭喜你完成了整个Python基础课程的学习！你现在已经掌握了Python编程的核心概念和应用技能，包括：</p>
+                    <ul>
+                        <li>Python基础语法和数据类型</li>
+                        <li>数据结构和算法</li>
+                        <li>函数和模块</li>
+                        <li>面向对象编程</li>
+                        <li>工程化实践</li>
+                        <li>AI应用开发</li>
+                    </ul>
+                    <p>继续学习，不断实践，你将成为一名优秀的Python开发者！</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Python基础课程学习站点</p>
+        <p><a href="python-course.html">返回课程首页</a></p>
+    </footer>
+    
+    <script>
+        function initCodeEditors() {
+            const codeBlocks = document.querySelectorAll('.code-block');
+            codeBlocks.forEach((block, index) => {
+                const code = block.querySelector('code').textContent;
+                
+                // 创建包装器
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                block.parentNode.insertBefore(wrapper, block);
+                wrapper.appendChild(block);
+                
+                // 为原始代码块添加运行按钮
+                const blockRunButton = document.createElement('button');
+                blockRunButton.className = 'code-block-run-button';
+                blockRunButton.innerHTML = '▶ 运行';
+                blockRunButton.onclick = function() {
+                    runPythonCode(index, code, `block-output-${index}`);
+                };
+                wrapper.appendChild(blockRunButton);
+                
+                // 为原始代码块添加输出区域
+                const blockOutputDiv = document.createElement('div');
+                blockOutputDiv.className = 'code-block-output';
+                blockOutputDiv.id = `block-output-${index}`;
+                wrapper.after(blockOutputDiv);
+                
+                // 创建交互式编辑器（作为备用选项）
+                const editorContainer = document.createElement('div');
+                editorContainer.className = 'code-editor';
+                editorContainer.id = `code-editor-${index}`;
+                editorContainer.style.marginTop = '10px';
+                
+                const collapseButton = document.createElement('button');
+                collapseButton.className = 'collapse-button';
+                collapseButton.textContent = '折叠';
+                collapseButton.onclick = function() {
+                    editorContainer.classList.toggle('collapsed');
+                    this.textContent = editorContainer.classList.contains('collapsed') ? '展开' : '折叠';
+                };
+                editorContainer.appendChild(collapseButton);
+                
+                const floatButton = document.createElement('button');
+                floatButton.className = 'collapse-button';
+                floatButton.style.right = '70px';
+                floatButton.textContent = '悬浮';
+                floatButton.onclick = function() {
+                    editorContainer.classList.toggle('floating');
+                    this.textContent = editorContainer.classList.contains('floating') ? '固定' : '悬浮';
+                };
+                editorContainer.appendChild(floatButton);
+                
+                const editor = CodeMirror(editorContainer, {
+                    value: code,
+                    mode: 'python',
+                    theme: 'monokai',
+                    lineNumbers: true,
+                    indentUnit: 4,
+                    tabSize: 4,
+                    indentWithTabs: false,
+                    lineWrapping: true
+                });
+                
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'code-actions';
+                
+                const runButton = document.createElement('button');
+                runButton.className = 'run-button';
+                runButton.textContent = '运行代码';
+                runButton.onclick = function() {
+                    runPythonCode(index, editor.getValue(), `code-output-${index}`);
+                };
+                actionsDiv.appendChild(runButton);
+                editorContainer.appendChild(actionsDiv);
+                
+                const outputDiv = document.createElement('div');
+                outputDiv.className = 'code-output';
+                outputDiv.id = `code-output-${index}`;
+                outputDiv.textContent = '运行结果将显示在这里...';
+                editorContainer.appendChild(outputDiv);
+                
+                blockOutputDiv.after(editorContainer);
+            });
+        }
+        
+        async function runPythonCode(index, code, outputId) {
+            const outputDiv = document.getElementById(outputId);
+            outputDiv.style.display = 'block';
+            outputDiv.textContent = '运行中...';
+            
+            try {
+                // 使用在线Python执行服务
+                const response = await fetch('https://emkc.org/api/v1/piston/execute', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        language: 'python3',
+                        version: '3.10.0',
+                        code: code
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.run) {
+                    outputDiv.textContent = result.run.output || '代码执行成功！';
+                    if (result.run.stderr) {
+                        outputDiv.textContent += '\n错误: ' + result.run.stderr;
+                    }
+                } else if (result.error) {
+                    outputDiv.textContent = '错误: ' + result.error;
+                } else {
+                    outputDiv.textContent = '代码执行成功！';
+                }
+            } catch (error) {
+                outputDiv.textContent = `错误: ${error.message}`;
+            }
+        }
+        
+        window.onload = function() {
+            initCodeEditors();
+        };
+    </script>
+</body>
+</html>
