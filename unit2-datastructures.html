@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>第二单元：数据结构 - Python基础课程</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/monokai.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/python/python.min.js"></script>
+
+        <style>
+            .code-editor {
+                position: relative;
+                margin: 20px 0;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            }
+            
+            .code-editor.floating {
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                width: 400px;
+                max-width: 90vw;
+                z-index: 1000;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            }
+            
+            .CodeMirror {
+                height: auto;
+                min-height: 100px;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .code-actions {
+                display: flex;
+                justify-content: flex-end;
+                padding: 10px;
+                background-color: #2d2d2d;
+                border-top: 1px solid #444;
+            }
+            
+            .run-button {
+                background-color: #667eea;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
+            }
+            
+            .run-button:hover {
+                background-color: #5a6fd8;
+            }
+            
+            .run-button:active {
+                background-color: #4d5fc5;
+            }
+            
+            .code-output {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-top: none;
+                border-radius: 0 0 8px 8px;
+                padding: 15px;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 0.9rem;
+                line-height: 1.5;
+                white-space: pre-wrap;
+                min-height: 50px;
+                max-height: 300px;
+                overflow-y: auto;
+                color: #333;
+            }
+            
+            .code-editor.collapsed .CodeMirror {
+                max-height: 100px;
+                overflow: hidden;
+            }
+            
+            .collapse-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                cursor: pointer;
+                z-index: 10;
+            }
+            
+            .collapse-button:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+            
+            .code-block {
+                position: relative;
+            }
+            
+            .code-block-wrapper {
+                position: relative;
+                margin: 20px 0;
+            }
+            
+            .code-block-run-button {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                background-color: #667eea;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 6px 14px;
+                font-size: 0.85rem;
+                cursor: pointer;
+                z-index: 20;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                transition: background-color 0.3s ease;
+                font-weight: 500;
+            }
+            
+            .code-block-run-button:hover {
+                background-color: #5a6fd8;
+            }
+            
+            .code-block-run-button:active {
+                background-color: #4d5fc5;
+            }
+            
+            .code-block-output {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 0 0 8px 8px;
+                padding: 15px;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 0.9rem;
+                line-height: 1.5;
+                white-space: pre-wrap;
+                min-height: 50px;
+                max-height: 300px;
+                overflow-y: auto;
+                color: #333;
+                margin-top: -20px;
+                display: none;
+            }
+        </style>
+    </head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">个人主页</a></li>
+                <li><a href="python-course.html">课程首页</a></li>
+                <li><a href="#intro">单元介绍</a></li>
+                <li><a href="#lists">列表进阶</a></li>
+                <li><a href="#tuples">元组</a></li>
+                <li><a href="#dictionaries">字典</a></li>
+                <li><a href="#sets">集合</a></li>
+                <li><a href="#advanced">高级操作</a></li>
+                <li><a href="#exercises">练习题</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>第二单元：数据结构</h1>
+                <p>掌握Python核心数据结构，构建高效程序</p>
+                <p>预计学习时间：4-5小时</p>
+            </div>
+        </section>
+
+        <section id="intro" class="python">
+            <h2>单元介绍</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>欢迎来到Python基础课程的第二单元！在这个单元中，你将学习Python中最重要的数据结构，这些是构建复杂程序的基础。</p>
+                    
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>掌握列表的高级操作</li>
+                        <li>理解元组的特性和使用场景</li>
+                        <li>学会使用字典存储键值对数据</li>
+                        <li>掌握集合的特性和操作</li>
+                        <li>学习数据结构的高级操作和最佳实践</li>
+                        <li>能够根据不同场景选择合适的数据结构</li>
+                    </ul>
+                    
+                    <h3>学习提示</h3>
+                    <p>💡 <strong>重要提示：</strong>数据结构是编程的基础，理解它们的特性和使用场景将帮助你写出更高效、更清晰的代码。建议你多做练习，加深对这些数据结构的理解！</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="lists" class="python">
+            <h2>2.1 列表进阶：更强大的列表操作</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>在第一单元中，我们已经学习了列表的基础知识。现在让我们深入了解列表的高级操作！</p>
+                    
+                    <h3>列表推导式</h3>
+                    <p>列表推导式是Python中创建列表的一种简洁方式：</p>
+                    <div class="code-block">
+                        <pre><code># 传统方式创建列表
+numbers = [1, 2, 3, 4, 5]
+squares = []
+for num in numbers:
+    squares.append(num * num)
+print(squares)
+
+# 使用列表推导式
+numbers = [1, 2, 3, 4, 5]
+squares = [num * num for num in numbers]
+print(squares)
+
+# 带条件的列表推导式
+even_squares = [num * num for num in numbers if num % 2 == 0]
+print(even_squares)
+
+# 嵌套列表推导式
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flattened = [num for row in matrix for num in row]
+print(flattened)</code></pre>
+                    </div>
+                    
+                    <h3>列表的高级方法</h3>
+                    <div class="code-block">
+                        <pre><code>fruits = ["apple", "banana", "cherry", "date"]
+
+# 排序
+fruits.sort()
+print("排序后:", fruits)
+
+# 反转
+fruits.reverse()
+print("反转后:", fruits)
+
+# 复制列表
+fruits_copy = fruits.copy()
+print("副本:", fruits_copy)
+
+# 清空列表
+fruits_copy.clear()
+print("清空后:", fruits_copy)
+
+# 扩展列表
+more_fruits = ["elderberry", "fig"]
+fruits.extend(more_fruits)
+print("扩展后:", fruits)
+
+# 查找元素索引
+print("banana的索引:", fruits.index("banana"))
+
+# 统计元素出现次数
+fruits.append("banana")
+print("banana出现次数:", fruits.count("banana"))</code></pre>
+                    </div>
+                    
+                    <h3>列表的切片操作</h3>
+                    <div class="code-block">
+                        <pre><code>numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 基本切片
+print("前5个元素:", numbers[0:5])
+print("从索引2开始:", numbers[2:])
+print("到索引7结束:", numbers[:7])
+
+# 步长切片
+print("每隔一个元素:", numbers[::2])
+print("从1开始每隔2个元素:", numbers[1::2])
+
+# 负数索引和切片
+print("最后3个元素:", numbers[-3:])
+print("反转列表:", numbers[::-1])
+
+# 修改切片
+numbers[2:5] = [20, 30, 40]
+print("修改后:", numbers)
+
+# 插入元素
+numbers[5:5] = [45, 50]
+print("插入后:", numbers)
+
+# 删除元素
+numbers[2:5] = []
+print("删除后:", numbers)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tuples" class="python">
+            <h2>2.2 元组：不可变的序列</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>元组是一种不可变的序列类型，与列表类似，但一旦创建就不能修改。</p>
+                    
+                    <h3>创建元组</h3>
+                    <div class="code-block">
+                        <pre><code># 使用圆括号创建元组
+t1 = (1, 2, 3)
+print(t1)
+
+# 不使用括号创建元组
+t2 = 4, 5, 6
+print(t2)
+
+# 创建单元素元组（必须加逗号）
+t3 = (7,)
+print(t3)
+
+# 使用tuple()函数创建元组
+t4 = tuple([1, 2, 3])
+print(t4)
+t5 = tuple("hello")
+print(t5)</code></pre>
+                    </div>
+                    
+                    <h3>元组的特性</h3>
+                    <div class="code-block">
+                        <pre><code>t = (1, 2, 3, 4, 5)
+
+# 访问元素
+print("第一个元素:", t[0])
+print("最后一个元素:", t[-1])
+
+# 切片操作
+print("前三个元素:", t[:3])
+print("从索引2开始:", t[2:])
+
+# 元组是不可变的，以下操作会报错
+# t[0] = 10  # 会引发TypeError
+
+# 元组的长度
+print("长度:", len(t))
+
+# 元组的方法
+print("元素2出现的次数:", t.count(2))
+print("元素3的索引:", t.index(3))
+
+# 元组的拼接
+ t1 = (1, 2, 3)
+t2 = (4, 5, 6)
+t3 = t1 + t2
+print("拼接后:", t3)
+
+# 元组的重复
+ t4 = t1 * 3
+print("重复后:", t4)</code></pre>
+                    </div>
+                    
+                    <h3>元组的使用场景</h3>
+                    <div class="code-block">
+                        <pre><code># 作为函数返回值
+ def get_coordinates():
+    return (10, 20, 30)
+
+x, y, z = get_coordinates()
+print(f"x={x}, y={y}, z={z}")
+
+# 作为字典的键（因为元组是不可变的）
+ person = {
+    ("John", "Doe"): 30,
+    ("Jane", "Smith"): 25
+}
+print(person[("John", "Doe")])
+
+# 多变量赋值
+ a, b, c = (1, 2, 3)
+print(f"a={a}, b={b}, c={c}")
+
+# 交换变量值
+ x, y = 10, 20
+print(f"交换前: x={x}, y={y}")
+x, y = y, x
+print(f"交换后: x={x}, y={y}")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dictionaries" class="python">
+            <h2>2.3 字典：键值对的集合</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>字典是Python中另一种重要的数据结构，它存储键值对，允许通过键快速查找值。</p>
+                    
+                    <h3>创建字典</h3>
+                    <div class="code-block">
+                        <pre><code># 使用大括号创建字典
+person = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
+print(person)
+
+# 使用dict()函数创建字典
+person2 = dict(name="Jane", age=25, city="London")
+print(person2)
+
+# 从列表创建字典
+items = [("name", "Bob"), ("age", 35), ("city", "Paris")]
+person3 = dict(items)
+print(person3)
+
+# 创建空字典
+empty_dict = {}
+print(empty_dict)</code></pre>
+                    </div>
+                    
+                    <h3>字典的基本操作</h3>
+                    <div class="code-block">
+                        <pre><code>person = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
+
+# 访问值
+print("姓名:", person["name"])
+print("年龄:", person.get("age"))
+
+# 使用get()方法避免KeyError
+print("职业:", person.get("job", "未知"))
+
+# 添加或修改键值对
+person["job"] = "Engineer"
+print("添加职业后:", person)
+
+person["age"] = 31
+print("修改年龄后:", person)
+
+# 删除键值对
+del person["city"]
+print("删除城市后:", person)
+
+# 弹出键值对
+job = person.pop("job")
+print("弹出的职业:", job)
+print("弹出后:", person)
+
+# 清空字典
+person.clear()
+print("清空后:", person)</code></pre>
+                    </div>
+                    
+                    <h3>字典的方法</h3>
+                    <div class="code-block">
+                        <pre><code>person = {
+    "name": "John",
+    "age": 30,
+    "city": "New York",
+    "job": "Engineer"
+}
+
+# 获取所有键
+print("所有键:", list(person.keys()))
+
+# 获取所有值
+print("所有值:", list(person.values()))
+
+# 获取所有键值对
+print("所有键值对:", list(person.items()))
+
+# 遍历字典
+print("\n遍历键:")
+for key in person:
+    print(key)
+
+print("\n遍历键值对:")
+for key, value in person.items():
+    print(f"{key}: {value}")
+
+# 字典的更新
+person.update({"age": 31, "salary": 50000})
+print("更新后:", person)
+
+# 字典的复制
+person_copy = person.copy()
+print("副本:", person_copy)</code></pre>
+                    </div>
+                    
+                    <h3>字典的应用场景</h3>
+                    <div class="code-block">
+                        <pre><code># 存储配置信息
+config = {
+    "host": "localhost",
+    "port": 8080,
+    "debug": True,
+    "database": {
+        "name": "mydb",
+        "user": "admin",
+        "password": "password"
+    }
+}
+print("配置信息:", config)
+
+# 统计词频
+text = "hello world hello python hello"
+word_count = {}
+for word in text.split():
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
+print("词频统计:", word_count)
+
+# 使用字典实现简单的缓存
+cache = {}
+
+def get_data(key):
+    if key in cache:
+        print("从缓存获取数据")
+        return cache[key]
+    else:
+        print("从数据库获取数据")
+        # 模拟从数据库获取数据
+        data = f"数据{key}"
+        cache[key] = data
+        return data
+
+print(get_data(1))
+print(get_data(1))  # 从缓存获取
+print(get_data(2))</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sets" class="python">
+            <h2>2.4 集合：无序的唯一元素集合</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>集合是一种无序的、包含唯一元素的数据结构，它支持数学中的集合运算。</p>
+                    
+                    <h3>创建集合</h3>
+                    <div class="code-block">
+                        <pre><code># 使用大括号创建集合
+s1 = {1, 2, 3, 4, 5}
+print(s1)
+
+# 使用set()函数创建集合
+s2 = set([1, 2, 3, 4, 5])
+print(s2)
+
+# 从字符串创建集合
+s3 = set("hello")
+print(s3)  # 注意：集合中的元素是唯一的
+
+# 创建空集合（不能用{}，因为{}创建的是空字典）
+s4 = set()
+print(s4)</code></pre>
+                    </div>
+                    
+                    <h3>集合的基本操作</h3>
+                    <div class="code-block">
+                        <pre><code>s = {1, 2, 3, 4, 5}
+
+# 添加元素
+s.add(6)
+print("添加后:", s)
+
+# 添加多个元素
+s.update([7, 8, 9])
+print("更新后:", s)
+
+# 删除元素
+s.remove(9)
+print("删除后:", s)
+
+# 弹出元素（随机）
+popped = s.pop()
+print("弹出的元素:", popped)
+print("弹出后:", s)
+
+# 清空集合
+s.clear()
+print("清空后:", s)</code></pre>
+                    </div>
+                    
+                    <h3>集合的运算</h3>
+                    <div class="code-block">
+                        <pre><code>A = {1, 2, 3, 4, 5}
+B = {4, 5, 6, 7, 8}
+
+# 并集
+print("并集:", A | B)
+print("并集:", A.union(B))
+
+# 交集
+print("交集:", A & B)
+print("交集:", A.intersection(B))
+
+# 差集
+print("差集(A-B):", A - B)
+print("差集(A-B):", A.difference(B))
+print("差集(B-A):", B - A)
+print("差集(B-A):", B.difference(A))
+
+# 对称差集
+print("对称差集:", A ^ B)
+print("对称差集:", A.symmetric_difference(B))
+
+# 子集和超集
+C = {1, 2, 3}
+print("C是A的子集:", C.issubset(A))
+print("A是C的超集:", A.issuperset(C))</code></pre>
+                    </div>
+                    
+                    <h3>集合的应用场景</h3>
+                    <div class="code-block">
+                        <pre><code># 去重
+numbers = [1, 2, 3, 2, 1, 4, 5, 4]
+unique_numbers = list(set(numbers))
+print("去重后:", unique_numbers)
+
+# 检查元素是否存在
+fruits = {"apple", "banana", "cherry"}
+print("apple在集合中:", "apple" in fruits)
+print("orange在集合中:", "orange" in fruits)
+
+# 集合运算应用
+students_who_took_math = {"Alice", "Bob", "Charlie", "David"}
+students_who_took_physics = {"Bob", "David", "Eve", "Frank"}
+
+print("只参加数学的学生:", students_who_took_math - students_who_took_physics)
+print("只参加物理的学生:", students_who_took_physics - students_who_took_math)
+print("两门都参加的学生:", students_who_took_math & students_who_took_physics)
+print("至少参加一门的学生:", students_who_took_math | students_who_took_physics)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced" class="python">
+            <h2>2.5 高级操作：数据结构的最佳实践</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>现在让我们学习一些数据结构的高级操作和最佳实践。</p>
+                    
+                    <h3>嵌套数据结构</h3>
+                    <div class="code-block">
+                        <pre><code># 列表嵌套
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print("矩阵:", matrix)
+print("第二行第三列:", matrix[1][2])
+
+# 字典嵌套
+student = {
+    "name": "John",
+    "age": 18,
+    "grades": {
+        "math": 90,
+        "english": 85,
+        "science": 95
+    },
+    "hobbies": ["reading", "coding", "sports"]
+}
+print("学生信息:", student)
+print("数学成绩:", student["grades"]["math"])
+print("第一个爱好:", student["hobbies"][0])
+
+# 集合嵌套（只能嵌套不可变类型）
+set_of_tuples = {(1, 2), (3, 4), (5, 6)}
+print("元组集合:", set_of_tuples)</code></pre>
+                    </div>
+                    
+                    <h3>数据结构的选择</h3>
+                    <div class="code-block">
+                        <pre><code># 选择合适的数据结构
+
+# 列表：有序，可修改，允许重复元素
+# 用例：需要保持顺序的元素集合
+shopping_list = ["apple", "banana", "cherry"]
+
+# 元组：有序，不可修改，允许重复元素
+# 用例：需要保持顺序且不希望被修改的数据
+coordinates = (10, 20, 30)
+
+# 字典：无序（Python 3.7+有序），键值对，键唯一
+# 用例：需要通过键快速查找值的数据
+person = {"name": "John", "age": 30}
+
+# 集合：无序，元素唯一
+# 用例：需要去重或进行集合运算的数据
+unique_numbers = {1, 2, 3, 4, 5}
+
+# 示例：根据场景选择数据结构
+
+# 场景1：存储学生的成绩，需要通过姓名快速查找
+grades = {
+    "Alice": 90,
+    "Bob": 85,
+    "Charlie": 95
+}
+print("Alice的成绩:", grades.get("Alice"))
+
+# 场景2：存储班级所有学生的姓名，需要去重
+students = {"Alice", "Bob", "Charlie", "Alice"}  # 自动去重
+print("学生集合:", students)
+
+# 场景3：存储每周的温度数据，需要保持顺序
+temperatures = [22, 25, 23, 24, 26, 27, 28]
+print("周四的温度:", temperatures[3])</code></pre>
+                    </div>
+                    
+                    <h3>性能考虑</h3>
+                    <div class="code-block">
+                        <pre><code>import time
+
+# 测试列表和集合的成员检查性能
+size = 100000
+large_list = list(range(size))
+large_set = set(range(size))
+
+# 测试列表的成员检查
+start = time.time()
+for i in range(size):
+    i in large_list
+list_time = time.time() - start
+print(f"列表成员检查时间: {list_time:.6f}秒")
+
+# 测试集合的成员检查
+start = time.time()
+for i in range(size):
+    i in large_set
+set_time = time.time() - start
+print(f"集合成员检查时间: {set_time:.6f}秒")
+print(f"集合比列表快 {list_time/set_time:.2f} 倍")
+
+# 测试字典的查找性能
+large_dict = {i: i for i in range(size)}
+start = time.time()
+for i in range(size):
+    large_dict.get(i)
+dict_time = time.time() - start
+print(f"字典查找时间: {dict_time:.6f}秒")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exercises" class="python">
+            <h2>2.6 单元练习题</h2>
+            <div class="python-content">
+                <div class="topic-detail">
+                    <p>太棒了！你已经学完了第二单元的所有内容。现在让我们通过一些练习来巩固所学知识吧！</p>
+                    
+                    <h3>练习题1：列表操作</h3>
+                    <p>编写一个程序，创建一个包含1-10的列表，然后执行以下操作：</p>
+                    <ul>
+                        <li>添加元素11</li>
+                        <li>删除元素5</li>
+                        <li>将列表反转</li>
+                        <li>对列表排序</li>
+                        <li>输出最终结果</li>
+                    </ul>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code># 创建包含1-10的列表
+numbers = list(range(1, 11))
+print("原始列表:", numbers)
+
+# 添加元素11
+numbers.append(11)
+print("添加11后:", numbers)
+
+# 删除元素5
+numbers.remove(5)
+print("删除5后:", numbers)
+
+# 将列表反转
+numbers.reverse()
+print("反转后:", numbers)
+
+# 对列表排序
+numbers.sort()
+print("排序后:", numbers)</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题2：字典操作</h3>
+                    <p>编写一个程序，创建一个字典存储学生的姓名和成绩，然后执行以下操作：</p>
+                    <ul>
+                        <li>添加一个新学生</li>
+                        <li>修改一个学生的成绩</li>
+                        <li>删除一个学生</li>
+                        <li>计算所有学生的平均成绩</li>
+                    </ul>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code># 创建学生成绩字典
+student_grades = {
+    "Alice": 90,
+    "Bob": 85,
+    "Charlie": 95
+}
+print("原始字典:", student_grades)
+
+# 添加一个新学生
+student_grades["David"] = 88
+print("添加David后:", student_grades)
+
+# 修改一个学生的成绩
+student_grades["Bob"] = 87
+print("修改Bob的成绩后:", student_grades)
+
+# 删除一个学生
+del student_grades["Charlie"]
+print("删除Charlie后:", student_grades)
+
+# 计算平均成绩
+if student_grades:
+    average = sum(student_grades.values()) / len(student_grades)
+    print(f"平均成绩: {average:.2f}")
+else:
+    print("没有学生成绩")</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题3：集合操作</h3>
+                    <p>编写一个程序，创建两个集合，然后执行以下操作：</p>
+                    <ul>
+                        <li>计算并集</li>
+                        <li>计算交集</li>
+                        <li>计算差集</li>
+                        <li>检查一个集合是否是另一个集合的子集</li>
+                    </ul>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code># 创建两个集合
+A = {1, 2, 3, 4, 5}
+B = {4, 5, 6, 7, 8}
+print("集合A:", A)
+print("集合B:", B)
+
+# 计算并集
+union = A | B
+print("并集:", union)
+
+# 计算交集
+intersection = A & B
+print("交集:", intersection)
+
+# 计算差集
+difference1 = A - B
+difference2 = B - A
+print("A-B:", difference1)
+print("B-A:", difference2)
+
+# 检查子集
+C = {1, 2, 3}
+print("C是A的子集:", C.issubset(A))
+print("A是C的子集:", A.issubset(C))</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题4：嵌套数据结构</h3>
+                    <p>创建一个嵌套字典，存储多个学生的信息，包括姓名、年龄、课程和成绩，然后编写代码获取和修改其中的数据。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code># 创建嵌套字典
+students = {
+    "Alice": {
+        "age": 18,
+        "courses": {
+            "math": 90,
+            "english": 85,
+            "science": 95
+        }
+    },
+    "Bob": {
+        "age": 17,
+        "courses": {
+            "math": 80,
+            "english": 75,
+            "science": 85
+        }
+    }
+}
+
+# 获取Alice的数学成绩
+print("Alice的数学成绩:", students["Alice"]["courses"]["math"])
+
+# 修改Bob的英语成绩
+students["Bob"]["courses"]["english"] = 80
+print("修改后Bob的英语成绩:", students["Bob"]["courses"]["english"])
+
+# 添加新学生
+students["Charlie"] = {
+    "age": 19,
+    "courses": {
+        "math": 95,
+        "english": 90,
+        "science": 85
+    }
+}
+print("添加Charlie后:", students)
+
+# 计算每个学生的平均成绩
+for name, info in students.items():
+    grades = info["courses"].values()
+    average = sum(grades) / len(grades)
+    print(f"{name}的平均成绩: {average:.2f}")</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>练习题5：数据结构综合应用</h3>
+                    <p>编写一个程序，使用列表、字典和集合来统计一段文本中单词的出现次数，并找出出现频率最高的单词。</p>
+                    <details class="exercise-answer">
+                        <summary>查看参考答案</summary>
+                        <div class="code-block">
+                            <pre><code>text = "Python is a powerful programming language. Python is easy to learn. Python is widely used in data science and web development."
+
+# 预处理文本
+text = text.lower()
+for char in ". , ! ?":
+    text = text.replace(char, "")
+
+# 分割单词
+words = text.split()
+print("所有单词:", words)
+
+# 统计词频
+word_count = {}
+for word in words:
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
+print("词频统计:", word_count)
+
+# 找出频率最高的单词
+if word_count:
+    max_word = max(word_count, key=word_count.get)
+    print(f"出现频率最高的单词: '{max_word}'，出现了{word_count[max_word]}次")
+
+# 找出唯一单词
+unique_words = set(words)
+print(f"唯一单词数量: {len(unique_words)}")
+print("唯一单词:", unique_words)</code></pre>
+                        </div>
+                    </details>
+                    
+                    <h3>单元总结</h3>
+                    <p>🎉 <strong>恭喜你完成了第二单元的学习！</strong></p>
+                    <ul>
+                        <li>你掌握了列表的高级操作，包括列表推导式和切片</li>
+                        <li>你理解了元组的特性和使用场景</li>
+                        <li>你学会了使用字典存储和管理键值对数据</li>
+                        <li>你掌握了集合的特性和集合运算</li>
+                        <li>你学习了数据结构的高级操作和最佳实践</li>
+                        <li>你能够根据不同场景选择合适的数据结构</li>
+                    </ul>
+                    <p>继续加油，下一个单元我们将学习函数与模块！</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Python基础课程学习站点</p>
+        <p><a href="python-course.html">返回课程首页</a></p>
+    </footer>
+    
+    <script>
+        function initCodeEditors() {
+            const codeBlocks = document.querySelectorAll('.code-block');
+            codeBlocks.forEach((block, index) => {
+                const code = block.querySelector('code').textContent;
+                
+                // 创建包装器
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                block.parentNode.insertBefore(wrapper, block);
+                wrapper.appendChild(block);
+                
+                // 为原始代码块添加运行按钮
+                const blockRunButton = document.createElement('button');
+                blockRunButton.className = 'code-block-run-button';
+                blockRunButton.innerHTML = '▶ 运行';
+                blockRunButton.onclick = function() {
+                    runPythonCode(index, code, `block-output-${index}`);
+                };
+                wrapper.appendChild(blockRunButton);
+                
+                // 为原始代码块添加输出区域
+                const blockOutputDiv = document.createElement('div');
+                blockOutputDiv.className = 'code-block-output';
+                blockOutputDiv.id = `block-output-${index}`;
+                wrapper.after(blockOutputDiv);
+                
+                // 创建交互式编辑器（作为备用选项）
+                const editorContainer = document.createElement('div');
+                editorContainer.className = 'code-editor';
+                editorContainer.id = `code-editor-${index}`;
+                editorContainer.style.marginTop = '10px';
+                
+                const collapseButton = document.createElement('button');
+                collapseButton.className = 'collapse-button';
+                collapseButton.textContent = '折叠';
+                collapseButton.onclick = function() {
+                    editorContainer.classList.toggle('collapsed');
+                    this.textContent = editorContainer.classList.contains('collapsed') ? '展开' : '折叠';
+                };
+                editorContainer.appendChild(collapseButton);
+                
+                const floatButton = document.createElement('button');
+                floatButton.className = 'collapse-button';
+                floatButton.style.right = '70px';
+                floatButton.textContent = '悬浮';
+                floatButton.onclick = function() {
+                    editorContainer.classList.toggle('floating');
+                    this.textContent = editorContainer.classList.contains('floating') ? '固定' : '悬浮';
+                };
+                editorContainer.appendChild(floatButton);
+                
+                const editor = CodeMirror(editorContainer, {
+                    value: code,
+                    mode: 'python',
+                    theme: 'monokai',
+                    lineNumbers: true,
+                    indentUnit: 4,
+                    tabSize: 4,
+                    indentWithTabs: false,
+                    lineWrapping: true
+                });
+                
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'code-actions';
+                
+                const runButton = document.createElement('button');
+                runButton.className = 'run-button';
+                runButton.textContent = '运行代码';
+                runButton.onclick = function() {
+                    runPythonCode(index, editor.getValue(), `code-output-${index}`);
+                };
+                actionsDiv.appendChild(runButton);
+                editorContainer.appendChild(actionsDiv);
+                
+                const outputDiv = document.createElement('div');
+                outputDiv.className = 'code-output';
+                outputDiv.id = `code-output-${index}`;
+                outputDiv.textContent = '运行结果将显示在这里...';
+                editorContainer.appendChild(outputDiv);
+                
+                blockOutputDiv.after(editorContainer);
+            });
+        }
+        
+        async function runPythonCode(index, code, outputId) {
+            const outputDiv = document.getElementById(outputId);
+            outputDiv.style.display = 'block';
+            outputDiv.textContent = '运行中...';
+            
+            try {
+                // 使用在线Python执行服务
+                const response = await fetch('https://emkc.org/api/v1/piston/execute', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        language: 'python3',
+                        version: '3.10.0',
+                        code: code
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.run) {
+                    outputDiv.textContent = result.run.output || '代码执行成功！';
+                    if (result.run.stderr) {
+                        outputDiv.textContent += '\n错误: ' + result.run.stderr;
+                    }
+                } else if (result.error) {
+                    outputDiv.textContent = '错误: ' + result.error;
+                } else {
+                    outputDiv.textContent = '代码执行成功！';
+                }
+            } catch (error) {
+                outputDiv.textContent = `错误: ${error.message}`;
+            }
+        }
+        
+        window.onload = function() {
+            initCodeEditors();
+        };
+    </script>
+</body>
+</html>
