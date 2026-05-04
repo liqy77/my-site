@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python基础课程 - 学习站点</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="bubble-container" id="bubbleContainer"></div>
+
     <header>
         <nav>
             <ul>
@@ -25,6 +28,8 @@
 
     <main>
         <section id="hero" class="hero">
+            <div class="donut-decoration"></div>
+            <div class="donut-decoration"></div>
             <div class="hero-content">
                 <h1>Python基础课程</h1>
                 <p>AI时代的Python学习：从"死记语法"到"培养计算思维与工程化能力"</p>
@@ -155,42 +160,42 @@
                         <a href="unit1-syntax.html" style="text-decoration: none; color: inherit; display: block;">
                             <h3>第一单元：Python基础语法</h3>
                             <p>学习print函数、变量、数据类型、运算符、input函数等基础知识，适合零基础小白。</p>
-                            <p style="color: #667eea; font-weight: 500; margin-top: 15px;">点击进入 →</p>
+                            <p style="color: var(--sugar-pink); font-weight: 500; margin-top: 15px;">点击进入 →</p>
                         </a>
                     </div>
                     <div class="topic-item">
                         <a href="unit2-datastructures.html" style="text-decoration: none; color: inherit; display: block;">
                             <h3>第二单元：数据结构</h3>
                             <p>学习列表、元组、字典、集合等Python核心数据结构，掌握数据结构的高级操作。</p>
-                            <p style="color: #667eea; font-weight: 500; margin-top: 15px;">点击进入 →</p>
+                            <p style="color: var(--sugar-pink); font-weight: 500; margin-top: 15px;">点击进入 →</p>
                         </a>
                     </div>
                     <div class="topic-item">
                         <a href="unit3-functions.html" style="text-decoration: none; color: inherit; display: block;">
                             <h3>第三单元：函数与模块</h3>
                             <p>学习函数定义、参数传递、模块导入等知识，掌握Python的模块化编程能力。</p>
-                            <p style="color: #667eea; font-weight: 500; margin-top: 15px;">点击进入 →</p>
+                            <p style="color: var(--sugar-pink); font-weight: 500; margin-top: 15px;">点击进入 →</p>
                         </a>
                     </div>
                     <div class="topic-item">
                         <a href="unit4-oop.html" style="text-decoration: none; color: inherit; display: block;">
                             <h3>第四单元：面向对象编程</h3>
                             <p>学习类、对象、继承、多态等OOP概念，掌握Python的面向对象编程能力。</p>
-                            <p style="color: #667eea; font-weight: 500; margin-top: 15px;">点击进入 →</p>
+                            <p style="color: var(--sugar-pink); font-weight: 500; margin-top: 15px;">点击进入 →</p>
                         </a>
                     </div>
                     <div class="topic-item">
                         <a href="unit5-engineering.html" style="text-decoration: none; color: inherit; display: block;">
                             <h3>第五单元：工程化实践</h3>
                             <p>学习异常处理、测试、环境管理等工程化技能，构建可靠的Python项目。</p>
-                            <p style="color: #667eea; font-weight: 500; margin-top: 15px;">点击进入 →</p>
+                            <p style="color: var(--sugar-pink); font-weight: 500; margin-top: 15px;">点击进入 →</p>
                         </a>
                     </div>
                     <div class="topic-item">
                         <a href="unit6-ai.html" style="text-decoration: none; color: inherit; display: block;">
                             <h3>第六单元：AI应用开发</h3>
                             <p>探索人工智能的基本概念和应用，使用Python构建AI模型。</p>
-                            <p style="color: #667eea; font-weight: 500; margin-top: 15px;">点击进入 →</p>
+                            <p style="color: var(--sugar-pink); font-weight: 500; margin-top: 15px;">点击进入 →</p>
                         </a>
                     </div>
                 </div>
@@ -201,5 +206,41 @@
     <footer>
         <p>&copy; 2026 Python基础课程学习站点</p>
     </footer>
+
+    <script>
+        function createBubble() {
+            const container = document.getElementById('bubbleContainer');
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+
+            const size = Math.random() * 20 + 5;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + 'vw';
+            bubble.style.animationDuration = Math.random() * 10 + 10 + 's';
+            bubble.style.animationDelay = Math.random() * 5 + 's';
+
+            container.appendChild(bubble);
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 20000);
+        }
+
+        setInterval(createBubble, 800);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
