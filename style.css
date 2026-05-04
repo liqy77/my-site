@@ -1,184 +1,492 @@
-/* 全局样式 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f5f5f5;
+:root {
+    --deep-blue: #0a1628;
+    --ocean-blue: #1e3a5f;
+    --sky-blue: #3d5a80;
+    --bright-blue: #4a90d9;
+    --ice-blue: #7eb8da;
+    --foam-blue: #a8d5e5;
+    --sugar-pink: #ff6b9d;
+    --cream: #fff8f0;
+    --cola-dark: #2d1810;
+    --cola-light: #8b4513;
 }
 
-/* 导航栏样式 */
+body {
+    font-family: 'Nunito', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    color: var(--cream);
+    background: var(--deep-blue);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(74, 144, 217, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(61, 90, 128, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
 header {
-    background-color: #333;
+    background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--sky-blue) 100%);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='%23fff' opacity='0.1'/%3E%3Ccircle cx='30' cy='12' r='5' fill='%23fff' opacity='0.08'/%3E%3Ccircle cx='50' cy='8' r='6' fill='%23fff' opacity='0.1'/%3E%3Ccircle cx='70' cy='11' r='4' fill='%23fff' opacity='0.08'/%3E%3Ccircle cx='90' cy='9' r='7' fill='%23fff' opacity='0.1'/%3E%3C/svg%3E") repeat-x;
+    background-size: 100px 20px;
 }
 
 nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
+    padding: 10px 0;
 }
 
 nav ul li {
-    margin: 0 20px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     display: block;
-    padding: 15px 0;
-    color: #fff;
+    padding: 12px 20px;
+    color: var(--cream);
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+nav ul li a:hover::before {
+    width: 200px;
+    height: 200px;
 }
 
 nav ul li a:hover {
-    color: #ffd700;
+    color: var(--bright-blue);
+    transform: scale(1.05);
 }
 
-/* 英雄区样式 */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background:
+        radial-gradient(ellipse at center top, rgba(74, 144, 217, 0.3) 0%, transparent 60%),
+        radial-gradient(ellipse at center bottom, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, var(--deep-blue) 0%, var(--ocean-blue) 50%, var(--sky-blue) 100%);
+    color: var(--cream);
     text-align: center;
-    padding: 0 20px;
+    padding: 120px 20px 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--bright-blue) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, var(--sugar-pink) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.25;
+    animation: float 6s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(10deg); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-image {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-    margin-bottom: 20px;
-    border: 4px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 30px;
+    border: 5px solid var(--bright-blue);
     object-fit: cover;
+    box-shadow:
+        0 0 30px rgba(74, 144, 217, 0.5),
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.hero-image:hover {
+    transform: scale(1.1);
+    box-shadow:
+        0 0 50px rgba(74, 144, 217, 0.7),
+        0 15px 50px rgba(0, 0, 0, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(74, 144, 217, 0.5), 0 10px 40px rgba(0, 0, 0, 0.3); }
+    50% { box-shadow: 0 0 50px rgba(74, 144, 217, 0.7), 0 10px 40px rgba(0, 0, 0, 0.3); }
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
     margin-bottom: 20px;
-    font-weight: 700;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--foam-blue) 50%, var(--bright-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 .hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* 内容区域样式 */
+.donut-decoration {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 15px solid var(--sugar-pink);
+    background: transparent;
+    opacity: 0.2;
+    animation: spin 20s linear infinite;
+}
+
+.donut-decoration:nth-child(1) {
+    top: 10%;
+    right: 20%;
+    width: 80px;
+    height: 80px;
+    border-width: 20px;
+    border-color: var(--bright-blue);
+}
+
+.donut-decoration:nth-child(2) {
+    bottom: 20%;
+    left: 15%;
+    width: 50px;
+    height: 50px;
+    border-width: 12px;
+    border-color: var(--foam-blue);
+    animation-direction: reverse;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 section {
     padding: 100px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 section h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 50px;
-    color: #333;
+    color: var(--cream);
     position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+section h2::before {
+    content: '🍩';
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 section h2::after {
     content: '';
     display: block;
-    width: 100px;
+    width: 120px;
     height: 4px;
-    background-color: #667eea;
+    background: linear-gradient(90deg, transparent, var(--bright-blue), var(--sugar-pink), var(--bright-blue), transparent);
     margin: 20px auto 0;
     border-radius: 2px;
 }
 
-/* 关于我部分 */
 .about {
-    background-color: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--sky-blue) 100%);
     margin: 50px 0;
-    border-radius: 10px;
+    border-radius: 30px;
     overflow: hidden;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .about-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 50px;
+    padding: 50px;
+    position: relative;
+    z-index: 1;
 }
 
 .about-text {
     flex: 1;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1.15rem;
+    line-height: 2;
     text-align: center;
     max-width: 800px;
 }
 
 .about-text p {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border-left: 4px solid var(--bright-blue);
+    backdrop-filter: blur(10px);
 }
 
-/* 兴趣爱好部分 */
+.hobbies {
+    position: relative;
+}
+
 .hobbies-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
 }
 
 .hobby-item {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(145deg, var(--ocean-blue), var(--sky-blue));
+    padding: 35px;
+    border-radius: 25px;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.hobby-item::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    transition: all 0.5s ease;
+}
+
+.hobby-item:hover::before {
+    top: -50%;
+    left: -50%;
 }
 
 .hobby-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(74, 144, 217, 0.3);
 }
 
 .hobby-image {
     width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    height: 220px;
+    border-radius: 20px;
+    margin-bottom: 25px;
     object-fit: cover;
+    border: 3px solid var(--bright-blue);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease;
+}
+
+.hobby-item:hover .hobby-image {
+    transform: scale(1.05);
 }
 
 .hobby-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #667eea;
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+    color: var(--foam-blue);
+    position: relative;
+    display: inline-block;
+}
+
+.hobby-item h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--bright-blue), var(--sugar-pink));
+    border-radius: 2px;
 }
 
 .hobby-item p {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 248, 240, 0.9);
 }
 
-/* Python课程部分 */
-.python {
-    background-color: #fff;
+.vision {
+    background: linear-gradient(135deg, rgba(30, 58, 95, 0.8), rgba(61, 90, 128, 0.8));
     margin: 50px 0;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.vision::before {
+    content: '🥤';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 4rem;
+    opacity: 0.15;
+    animation: float 4s ease-in-out infinite;
+}
+
+.vision-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.vision-content p {
+    font-size: 1.15rem;
+    line-height: 2;
+    margin-bottom: 25px;
+    max-width: 850px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.python {
+    background: linear-gradient(145deg, var(--ocean-blue), var(--sky-blue));
+    margin: 50px 0;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.python::after {
+    content: '🐍';
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    font-size: 5rem;
+    opacity: 0.1;
 }
 
 .python-content {
-    padding: 0 50px;
+    padding: 50px;
+    position: relative;
+    z-index: 1;
 }
 
 .course-overview {
@@ -187,10 +495,13 @@ section h2::after {
 }
 
 .course-overview p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    max-width: 800px;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    max-width: 850px;
     margin: 0 auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
 }
 
 .course-topics {
@@ -200,40 +511,43 @@ section h2::after {
 }
 
 .topic-item {
-    background-color: #f9f9f9;
+    background: rgba(255, 255, 255, 0.08);
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .topic-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .topic-item h3 {
     font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #667eea;
+    margin-bottom: 18px;
+    color: var(--foam-blue);
 }
 
 .topic-item p {
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
-/* 课程详情部分 */
 .topic-detail {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
 }
 
 .topic-detail h3 {
-    font-size: 1.3rem;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    color: #667eea;
+    font-size: 1.4rem;
+    margin-top: 35px;
+    margin-bottom: 18px;
+    color: var(--foam-blue);
+    padding-left: 15px;
+    border-left: 4px solid var(--bright-blue);
 }
 
 .topic-detail h3:first-child {
@@ -241,37 +555,40 @@ section h2::after {
 }
 
 .topic-detail p {
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 22px;
 }
 
 .topic-detail ul {
-    margin: 20px 0 20px 40px;
-    font-size: 1rem;
-    line-height: 1.8;
+    margin: 22px 0 22px 45px;
+    font-size: 1.05rem;
+    line-height: 1.9;
 }
 
 .topic-detail ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .topic-detail strong {
-    color: #667eea;
+    color: var(--sugar-pink);
     font-weight: 600;
 }
 
-/* 代码块样式 */
 .code-block {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px 0;
+    background: linear-gradient(135deg, var(--cola-dark), #1a0f0a);
+    color: #f0e6d3;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
     overflow-x: auto;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .code-block pre {
@@ -280,133 +597,159 @@ section h2::after {
 }
 
 .code-block code {
-    color: #f8f8f2;
+    color: #f0e6d3;
 }
 
 .code-block.result {
-    background-color: #f5f5f5;
-    color: #333;
-    border: 1px solid #ddd;
+    background: linear-gradient(135deg, var(--sky-blue), var(--ocean-blue));
+    color: var(--cream);
+    border: 1px solid var(--bright-blue);
 }
 
 .code-block.result code {
-    color: #333;
+    color: var(--cream);
 }
 
-/* 运算符表格 */
 .operator-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 25px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 .operator-table th,
 .operator-table td {
-    padding: 12px 15px;
+    padding: 15px 18px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .operator-table th {
-    background-color: #667eea;
+    background: linear-gradient(135deg, var(--bright-blue), var(--sky-blue));
     color: white;
     font-weight: 600;
+    font-size: 1.05rem;
 }
 
 .operator-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .operator-table tr:hover {
-    background-color: #f0f0f0;
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* 练习题答案 */
 .exercise-answer {
-    margin: 15px 0;
+    margin: 18px 0;
 }
 
 .exercise-answer summary {
     cursor: pointer;
-    padding: 10px 15px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    color: #667eea;
-    font-weight: 500;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, var(--ocean-blue), var(--sky-blue));
+    border-radius: 12px;
+    color: var(--foam-blue);
+    font-weight: 600;
     display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
 .exercise-answer summary:hover {
-    background-color: #e0e0e0;
+    background: linear-gradient(135deg, var(--sky-blue), var(--bright-blue));
+    transform: scale(1.02);
 }
 
 .exercise-answer[open] summary {
-    border-radius: 5px 5px 0 0;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(135deg, var(--bright-blue), var(--sky-blue));
+    color: white;
 }
 
 .exercise-answer .code-block {
     margin-top: 0;
-    border-radius: 0 8px 8px 8px;
+    border-radius: 0 15px 15px 15px;
 }
 
-/* 页脚链接 */
-footer a {
-    color: #ffd700;
-    text-decoration: none;
-    margin-top: 10px;
-    display: inline-block;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* 个人愿景部分 */
-.vision {
-    background-color: #f9f9f9;
-    margin: 50px 0;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.vision-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 50px;
-    text-align: center;
-}
-
-.vision-content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* 页脚样式 */
 footer {
-    background-color: #333;
-    color: #fff;
+    background: linear-gradient(135deg, var(--cola-dark), var(--cola-light));
+    color: var(--cream);
     text-align: center;
-    padding: 30px 20px;
-    margin-top: 50px;
+    padding: 40px 25px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--bright-blue), var(--sugar-pink), var(--bright-blue));
 }
 
 footer p {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
-/* 响应式设计 */
+footer a {
+    color: var(--sugar-pink);
+    text-decoration: none;
+    margin-top: 12px;
+    display: inline-block;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--foam-blue);
+    transform: scale(1.05);
+}
+
+.bubble {
+    position: fixed;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    border-radius: 50%;
+    pointer-events: none;
+    animation: rise linear infinite;
+    z-index: 0;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+    }
+}
+
 @media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+    }
+
     nav ul li {
-        margin: 0 10px;
+        margin: 5px 10px;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
 
     section {
@@ -414,20 +757,27 @@ footer p {
     }
 
     section h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
-    .about-content {
+    .about-content,
+    .vision-content,
+    .python-content {
+        padding: 30px 20px;
         flex-direction: column;
-        padding: 30px;
     }
 
     .hobbies-content {
         grid-template-columns: 1fr;
     }
 
-    .vision-content {
-        padding: 0 30px;
+    .hobby-item,
+    .topic-item {
+        padding: 25px;
+    }
+
+    .donut-decoration {
+        display: none;
     }
 }
 
@@ -439,25 +789,47 @@ footer p {
 
     nav ul li {
         margin: 5px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        padding: 10px 15px;
     }
 
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
-    section {
-        padding: 60px 10px;
+    .hero-content p {
+        font-size: 1.1rem;
     }
 
     section h2 {
         font-size: 1.8rem;
     }
 
-    .about-content, .vision-content, .python-content {
-        padding: 20px;
+    section h2::before {
+        font-size: 2.5rem;
     }
 
-    .hobby-item, .topic-item {
-        padding: 20px;
+    .about-text p,
+    .vision-content p,
+    .course-overview p {
+        padding: 18px;
+        font-size: 1rem;
+    }
+
+    .hobby-image {
+        height: 180px;
+    }
+
+    .topic-detail h3 {
+        font-size: 1.2rem;
+    }
+
+    .code-block {
+        padding: 18px;
+        font-size: 0.9rem;
     }
 }
