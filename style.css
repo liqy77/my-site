@@ -351,6 +351,8 @@ section h2::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 35px;
+    justify-items: center;
+    width: 100%;
 }
 
 .hobby-item {
@@ -363,6 +365,7 @@ section h2::after {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 
 .hobby-item::before {
