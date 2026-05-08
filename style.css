@@ -246,9 +246,13 @@ nav ul li a:hover {
 
 section {
     padding: 100px 20px;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 section h2 {
@@ -333,8 +337,10 @@ section h2::after {
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    border-left: 4px solid var(--bright-blue);
+    border: 2px solid var(--bright-blue);
     backdrop-filter: blur(10px);
+    text-align: center;
+    max-width: 100%;
 }
 
 .hobbies {
@@ -401,19 +407,14 @@ section h2::after {
     font-size: 1.6rem;
     margin-bottom: 18px;
     color: var(--foam-blue);
-    position: relative;
-    display: inline-block;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--bright-blue);
+    display: block;
 }
 
 .hobby-item h3::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--bright-blue), var(--sugar-pink));
-    border-radius: 2px;
+    display: none;
 }
 
 .hobby-item p {
@@ -539,6 +540,7 @@ section h2::after {
 .topic-detail {
     max-width: 850px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .topic-detail h3 {
@@ -546,8 +548,9 @@ section h2::after {
     margin-top: 35px;
     margin-bottom: 18px;
     color: var(--foam-blue);
-    padding-left: 15px;
-    border-left: 4px solid var(--bright-blue);
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--bright-blue);
+    display: inline-block;
 }
 
 .topic-detail h3:first-child {
@@ -561,9 +564,13 @@ section h2::after {
 }
 
 .topic-detail ul {
-    margin: 22px 0 22px 45px;
+    margin: 22px auto;
+    padding-left: 0;
     font-size: 1.05rem;
     line-height: 1.9;
+    list-style-position: inside;
+    display: inline-block;
+    text-align: left;
 }
 
 .topic-detail ul li {
